@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>本本清灰后的意外烦恼</title>
+  <meta name="author" content="Ruoyu Sun" />
+  <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/css/prettify.css" type="text/css" media="screen, projection" />
+  <script type="text/javascript" src="/js/prettify.js"></script>
+  <script type="text/javascript" src="/js/prettify-lua.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-41001497-1', 'ruoyusun.com');
+    ga('send', 'pageview');
+  </script>
+</head>
+<body onload="prettyPrint()">
+
+  <div class="container">
+
+    <div class="header">
+      <h1><a href="/">deli's</a></h1>
+      <h2>Thoughts on life and code</h2>
+    </div>
+
+    <div class="nav">
+      <a href="/archive.html">Archive</a>
+      <a href="/about.html">About</a>
+    </div>
+
+    <div class="content">
+	<h1>本本清灰后的意外烦恼</h1>
+	<p class="meta">01 May 2012</p>
+	<p>武汉的夏天，38·39度的高温，让身为胖纸的我情何以堪啊，当然，文章的主角不是我，是我这需要熬过这个夏天的本本</p>
+
+<p>华硕小本，一人一本，哈哈，给华硕做个广告^_^</p>
+
+<p>其实本本的散热一直不错的，不过前几天大家都开始为了这个即将到来的夏天准备，拆本本，清灰，我也就忍不住了，自己手艺不行，拿着本本去了华中地区的电子集聚中心—广埠屯（当然也是奸商集聚中心），把电脑里的灰小清了一下。</p>
+
+<p>那个技术男用纯熟的手法，把本本拆开了，其实里面灰也不多，不知道对散热的影响有多大，本本买了一年半了，加上武汉这边空气质量也不是很好，有点儿纳闷儿，为啥就这点儿灰，还收了我50大洋，不甘心呐&amp;（&amp;（<em>&amp;</em>……*%%&amp;……%&amp;@</p>
+
+<p>直奔主题（我真能墨迹），电脑装好了，双系统进win7，蓝屏重启….</p>
+
+<p>瞬间我绝望了一下，技术男大哥你到底行不行？只见技术男不紧不慢的把硬盘启动模式从AHCI调整为IDE模式，然后。。然后就没有然后了，进去了</p>
+
+<p>我也没说啥，试了试电脑，把钱付完谢谢老板就走了</p>
+
+<p>到宿舍我仔细回想了一下，以前遇到过类似的问题，在用winPE格盘的时候，有的电脑PE进不去，然后把硬盘启动模式改成兼容性强的IDE模式就好了，查了些相关资料，AHCI模式性能相对好些，本来本本配置不高，如果能改回去的话，就尽量改回去吧，但是改到AHCI的时候会蓝屏，我想应该是硬盘的自我保护机制，或者是内部有些地方有损坏吧，IDE启动的时候，win7跟ubuntu都会提示硬盘检测并修复，但是我都是直接进去的，不用纠结，当然选ubuntu了，linux的稳定性就不必我说了吧，平时电脑出啥问题，都是在linux下解决的，也习惯了。</p>
+
+<p>修复之后，改BIOS选择AHCI模式启动，开机win7会自动装好相关的驱动程序，这个不用自己费心（不过xp好像还没集成AHCI驱动，需要自己下载驱动并安装  <a href="http://www.itful.com/html/diy/hardware/2009/0607/sata.html">http://www.itful.com/html/diy/hardware/2009/0607/sata.html</a>，这篇文章讲的挺清楚的，有兴趣的可以参考一下^_^</p>
+
+<p>IDE硬盘 <a href="http://baike.baidu.com/view/1330089.htm">http://baike.baidu.com/view/1330089.htm</a></p>
+
+<p>AHCI <a href="http://baike.baidu.com/view/915161.htm">http://baike.baidu.com/view/915161.htm</a></p>
+
+
+</div>
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'delizzz'; // required: replace example with your forum shortname
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</body>
+</html>

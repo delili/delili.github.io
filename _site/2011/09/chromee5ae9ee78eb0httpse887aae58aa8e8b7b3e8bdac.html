@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>chrome实现HTTPS自动跳转</title>
+  <meta name="author" content="Ruoyu Sun" />
+  <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/css/prettify.css" type="text/css" media="screen, projection" />
+  <script type="text/javascript" src="/js/prettify.js"></script>
+  <script type="text/javascript" src="/js/prettify-lua.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-41001497-1', 'ruoyusun.com');
+    ga('send', 'pageview');
+  </script>
+</head>
+<body onload="prettyPrint()">
+
+  <div class="container">
+
+    <div class="header">
+      <h1><a href="/">deli's</a></h1>
+      <h2>Thoughts on life and code</h2>
+    </div>
+
+    <div class="nav">
+      <a href="/archive.html">Archive</a>
+      <a href="/about.html">About</a>
+    </div>
+
+    <div class="content">
+	<h1>chrome实现HTTPS自动跳转</h1>
+	<p class="meta">20 Sep 2011</p>
+	<p>前阵子一直在纠结网站的HTTPS 不能自动跳转的问题,比如facebook,twitter…等,因为笔者现在用的是HOSTS 访问,所以会出现访问上去的时候,但是将通信协议换成HTTPS就可以访问了,原理我就不用说了吧,每次都自己去地址栏那加,总觉得很麻烦,找了半天插件也没有找到…自己水平有限,也不会写,有哪位神牛能写一下最好了….</p>
+
+<p>步入正题:</p>
+
+<p>在网站找了一下相关了资料,发现chrome 自身还是很强大的,自己就实现了这个功能(又让我刮目相看了)…下面说一下具体配置方法:</p>
+
+<ol>
+  <li>
+    <p>地址栏输入chrome://net-internals/</p>
+  </li>
+  <li>
+    <p>在HSTS的标签栏里Domain里填上需要访问的domain,(我尝试了google.com,但是好像没实现自动跳转,还请大牛指点),twitter,facebook 都是可以的</p>
+  </li>
+  <li>
+    <p>然后选中Include subdomains点击Add按钮即可，可以加多个域</p>
+  </li>
+  <li>
+    <p>这样所有访问这个域名（包括子域名）都自动转到https了</p>
+  </li>
+</ol>
+
+<p>还是很简单的吧….</p>
+
+<p>(我所谓的自动跳转,貌似专业术语叫做重定向,这里就不更正了,以后的文章会学着专业点的^-^)</p>
+
+</div>
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'delizzz'; // required: replace example with your forum shortname
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</body>
+</html>

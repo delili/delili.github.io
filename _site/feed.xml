@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>deli&#39;s blog</title>
+    <description>deli&#39;s Thoughts on life and code</description>
+    <link>http:/blog.zhuer.me/</link>
+    <atom:link href="http:/blog.zhuer.me/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>最后一个暑假</title>
+        <description>&lt;p&gt;大学的最后一个暑假，又来到这个熟悉的城市——大连。&lt;/p&gt;
+
+&lt;p&gt;4、5月份的实习生招聘，本来有好多机会，可犹豫不决的我不知道自己究竟想做的是什么，PM没什么经验可谈，虽然喜欢关注新产品，去体验新产品，关注它们的最新信息，可从没有深入去思考过如何成为成为一个名合格的PM；硬着头皮去投开发或者测试，自己又没有参与过真正的项目开发，想想自己的大学三年，竟瞎折腾了，写代码的时间真的太少了。投了腾讯、微软、阿里的技术类实习生，腾讯是人生第一次面试，因为准备的尤其不充分，赤裸裸的被那个帅气年轻的面试官鄙视了，面试过程跟他交流得也比较少，而且氛围有些紧张；微软电面的是在bing做搜索过滤的天津老乡，同样作为老乡的我应该让他失望了，不过整体面试下来心情还不错，聊的听开心的，只是代码写的不好，算法问题回答的也不好。只有阿里的笔试题是针对所报方向出题，没有考数据结构、操作系统的基础知识，直接上代码，实在中无疑让我对阿里的这次招聘印象打了折扣，而且这次阿里在招聘数据统计上出现了问题，导致很多申请者的状态无法更新。我觉得既然你提供了这个平台给我们，就该踏踏实实的把它做好。Sigh，说多了都是泪。&lt;/p&gt;
+
+&lt;p&gt;懒人一个，没有主动去申请跟老师实习（其实申请了也不一定有人要，我就那么一说），老老实实的跟这学院的项目来了大连。&lt;/p&gt;
+
+&lt;p&gt;大连的东软，环境还是相当不错的，所谓了依山傍海，也不过如此了吧。呼吸着新鲜的空气，每天早晨去机房雾气环绕，放佛置身西游记中的天庭一般。天气更是没的说（这里特指温度），仲夏不用铺席子不用开风扇，洗完澡大家一起在宿舍happy，别提多开心了。食堂也比我想象中的要好吃很多，尤其是二楼的铁板饭和三楼的大排面，过嘴难忘。&lt;/p&gt;
+
+&lt;p&gt;至于学习，东软为我们制定了详细的教学和练习计划，虽然开学前有一次测试，不过貌似没有什么用，都是统一的进度安排，不会去迁就部分人，当然你想早点去把项目做完是不被推荐的了，每天的课程都安排的很紧。在这里请允许我小小的抱怨一下大东软的给我们这帮花了不知多少钱过来实训的人分配的机房，内存1G的xp系统，只允许接百度、csdn等外网的电脑，我们都已经签署了保密协议了，还用赛门铁克的防护软件不允许我们插U盘，开个数据库服务再加个eclipse就卡的要命，衰～不知道明天换到做项目的地方会不会好一点，希望会吧，不然真要带自己电脑过去了。抱怨完毕，继续谈学习的课程吧，这3个星期主要用来普及java、oracle数据库和stuts的知识，前二者说是普及吧，因为我们在学校都已经学过，到这边以这种目针对性的方式来再教我们一遍，全当作是复习（预习）了。有了对servlet的介绍，Stuts只不到一个星期就讲完了，个人觉得大部分人在没有亲自实践的情况下，对于stuts的理解不会很深，而我还是停留在struts如何简单的替代了servlet的控制角色这个层面。对于前端的Javascript和css的介绍就更一代而过了，好像是只用了一天的时间，不知道到时候没接触过这两门语言的能写出什么样的界面和功能来。带我们的每个老师都很负责，而且脾气也很好，感谢老师们不厌其烦的给我们解释每个问题，包容我们上课时的调皮，带给我们知识的同时，还让我们感到快乐，这是在大学机房&lt;/p&gt;
+
+&lt;p&gt;周末大概是我们这帮人最喜欢的时候吧，来之前没曾想过周末能这么疯狂的去玩儿，回去写一篇大大的周末大连行。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 03 Aug 2013 00:04:52 +0800</pubDate>
+        <link>http:/blog.zhuer.me/2013/08/e69c80e5908ee4b880e4b8aae69a91e58187.html</link>
+        <guid isPermaLink="true">http:/blog.zhuer.me/2013/08/e69c80e5908ee4b880e4b8aae69a91e58187.html</guid>
+      </item>
+    
+      <item>
+        <title>UTF-8无BOM和UTF-8两种编码方式的区别</title>
+        <description>&lt;p&gt;这两天看了一下最近比较火的微信公众平台，也自己申请了个公众帐号，准备测试一下，谁知中途又遇到了蛋疼的编码问题，遂将其记录在案。&lt;/p&gt;
+
+&lt;p&gt;参考方倍工作室的一片文章：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/txw1958/archive/2013/02/26/weixin-if50-music.html&quot;&gt;微信公众平台开发模式消息接口开发（50）在线点歌/在线音乐&lt;/a&gt;，想要探索一下点歌的功能，于是有了今天这个问题～&lt;/p&gt;
+
+&lt;p&gt;首先需要了解的是字符编码，推荐大家看一下阮一峰老师的文章-&lt;a href=&quot;http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html&quot;&gt;字符编码笔记：ASCII，Unicode和UTF-8&lt;/a&gt;,讲解的非常清晰。&lt;/p&gt;
+
+&lt;p&gt;下面进入问题讲解：&lt;/p&gt;
+
+&lt;p&gt;如下图所示，在搜索音乐的时候会返回一段以json格式保存的字符串，而你要做的就是解析这段字符串，并取得相应的属性值，这看起来是非常简单的，我用的是脚本语言-php。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://i-deally.info/blog/wp-content/uploads/2013/03/1.jpg.png&quot;&gt;&lt;img src=&quot;http://i-deally.info/blog/wp-content/uploads/2013/03/1.jpg.png&quot; alt=&quot;API&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这个简单的问题让我花费了2个小时才解决。&lt;/p&gt;
+
+&lt;p&gt;我尝试发送请求给服务器，以获得该字符串，因为以前没有用过php解析json，就先查了一下：&lt;/p&gt;
+
+&lt;p&gt;json_decode — 对 JSON 格式的字符串进行编码&lt;/p&gt;
+
+&lt;p&gt;问题来了，在解析的时候总是返回NULL，也就是解析不成功，于是我将返回的字符串输出到浏览器，检查了一下发现是正确的（将输出的字符串用json_decode解析），怎么会这样呢，明明是一样的函数字符串啊，一开始我总是在所用的解析函数上寻找原因，未果。&lt;/p&gt;
+
+&lt;p&gt;我意识到，可能是编码问题，于是用mb_detect_encoding函数检测了一下返回字符串的编码，是UTF-8无疑，这就略显奇葩了～看来需要来真的了，于是乎我将浏览器断输出的额字符串和服务器返回的进行了对比，果然，长度不一样～坑爹的问题终于要接受最后的审判了。&lt;/p&gt;
+
+&lt;p&gt;我用urlencode函数将两个字符串分别进行URL编码并输出，发现服务器端字符串比浏览器解析的多了：%EF%BB%BF%&lt;/p&gt;
+
+&lt;p&gt;好吧，直接google这几个字符，第一条结果是维基百科，第二条是Stack Overflow上的一个问题，我进去看了一下，就是字符串编码的问题，其中一个回答：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://i-deally.info/blog/wp-content/uploads/2013/03/2.png&quot;&gt;&lt;img src=&quot;http://i-deally.info/blog/wp-content/uploads/2013/03/2.png&quot; alt=&quot;Stack Overflow 回答&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;一针见血的支出了问题的根源所在:UTF-8无BOM和UTF-8两种编码方式的区别—BOM– A byte order mark (BOM) consists of the character code U+FEFF at the beginning of a data stream, where it can be used as a signature defining the byte order and encoding form, primarily of unmarked plaintext files. Under some higher level protocols, use of a BOM may be mandatory (or prohibited) in the Unicode data stream defined in that protocol.。&lt;/p&gt;
+
+&lt;p&gt;BOM放在开头，用于给UTF-16 和 UTF-32 标记字节序（byte order）更详细的解析参考&lt;a href=&quot;http://www.unicode.org/faq/utf_bom.html&quot;&gt;unicode官网&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://zh.wikipedia.org/wiki/UTF-8&quot;&gt;UTF-8&lt;/a&gt;则没有字节顺序问题，BOM在UTF-8中的作用就是标志这是一个UTF-8类型的文件。本质上来说UTF-8 不需要 BOM，尽管 Unicode 标准允许在 UTF-8 中使用 BOM，而我们平时所用的编码也都是无BOM的。&lt;/p&gt;
+
+&lt;p&gt;我现在想不通的是为何方倍工作室返回的是带BOM的格式。&lt;/p&gt;
+</description>
+        <pubDate>Sun, 24 Mar 2013 13:10:09 +0800</pubDate>
+        <link>http:/blog.zhuer.me/2013/03/utf-8e697a0bome5928cutf-8.html</link>
+        <guid isPermaLink="true">http:/blog.zhuer.me/2013/03/utf-8e697a0bome5928cutf-8.html</guid>
+      </item>
+    
+      <item>
+        <title>写在末日前</title>
+        <description>&lt;p&gt;纯粹的为了末日而起比，回忆一下从大二下到现在的杂碎生活吧。
+软件学院大概都比较看重实践吧，每年暑假都会有实训的安排，也就意味着每年都会比其他专业的同学晚那么一些日子放假，早那么一些天开学。大二的暑假算是比较忙碌的，下学期的4月份吧，跟鄢叔叔、陈旭、陈邵玮（名字没打错吧^_^）一起报了intel的一个比赛，又申到了一个国家级项目，这也就标志着忙碌的开始了。
+说实话，到现在已经快会想不起来考试周是怎样一个状态，那种日夜备战期末的日子已经一去不复返了，说在期末前，不知道会不会太早。下学期一直在12楼打酱油，开学就没去过了，而且是不辞而别，不知道老大会不会怪罪我，我觉得应该不会，流水似的人来来去去，他也不能都记那么请吧，在这儿给老大道个歉，原谅我的不辞而别。在12楼的那段日子，认识了不少研究生，虽然都不太熟悉，他们天天那样泡在实验室做项目，真的是有些乏味，要是再没有个妹子，就更加无聊寂寞至极了。这也是我萌生不太想留在国软的想法的原因之一吧，想去别的地方，看看别处的风景，杭州、上海或者北京，都行。
+考试周也是一晃而过，暑假前我们分别选了实训的方向，我当时选择了.Net。酱油一样的边参加实训，边准备我们intel的复赛材料。现在再让我选择的话我不会去参加那个实训了，感觉没什么营养，当然这只是我个人感觉，我觉得做自己想做的事儿最能激起自己的奋斗热情，这跟选专业和以后工作都是一样的，当然来软院之前我也没有志向要去学计算机，以前玩儿电脑只停留在百度几篇作文，然后胡乱吵吵，换qq秀，换空间主题这些层面，呵呵，身边没有人多懂电脑，有个伴儿到一个专科学的计算机，他告诉我说学电脑就是练打字，五笔字根背的那叫一个熟，当时还用全拼，打字速度远是我不敢想象的。既来之，则安之，用一颗积极的心态去面对生活，这是我大学以来的宗旨。
+回家了大概10天吧，记得当时从武汉走的时候去火车站取的返程票，记不清当时是什么心情了，跟金生一起到的北京，应该是22号吧，因为那天晚上北京大雨淹了好多人，我跟金生从北京往家走的时候大概是2点多吧，那时候已经下了很大的雨了，不过没有想到会有这么严重，RIP.到家后雨就很小了，然后开始为期10天的“假期”。期间去了几次城里，参加了班级聚会，陪陪爷爷老爸老妈，然后又匆匆忙忙的踏上了去大武汉的列车，碰巧和某聪妹子一趟车回武汉，也有个伴儿。到武汉开始漫无目的学习，跟强哥一起吃一食堂的日子挺好玩儿的，那时候很热，我们仍乐此不疲的工作着。
+九月的桂花已经开始散发这阵阵清香了，那时候已经忘了7、8月份的武汉是什么感觉了，只知道十一长假就要来了，我们一行十一人（差了灰灰和基康）集体投奔襄樊（早就改名叫襄阳了，只是我喜欢叫它襄樊）二叔家了，那趟行程可以说是毕生难忘啊，感谢二叔爸妈的盛情招待，我想大概再也找不出比这再周到的招待了，那几天我们很开心，早起去襄阳的牛油面，然后到处去逛，去玩儿，现在回忆一下当时的行程心里都美滋滋的，到的那天晚上大佬就喝多了，海南仔酒量还得练啊。第一天我们去了诸葛草堂，中午在襄樊学院的一个招待所吃的饭，下午就去泡温泉了，晚上去汉江坐船玩儿，晚上到宾馆先跟妹子一起玩儿浪人，然后扎金花（回忆起来豪爽），第二天去了诸葛亮的丈母娘他们那–黄家湾，玩儿的很累。第三天二叔带我们逛逛博物馆，打打桌游，看了场电影。其实本可以写个襄阳游记，有机会吧。
+知道Intel 的比赛进决赛的时候我们已经开学了，忘了那天什么心情了，总之挺高兴的，可以去大连happy一下了。回想起大一的时候冀哥去成都参加花旗的比赛，那时候就特别羡慕他，如今我也可以了，我成长了，不是么？参加比赛的唯一感觉就是累，尤其是最后的那几天，每天都是Deadline，每天凌晨4点多睡觉，连续了一个星期吧，那时候我们已经忘了时间，忘了疲倦，Deadline就像是一股很强大的正能量，陪了我们一个又一个夜晚。当然，也感谢冀哥最后的帮助。
+机票我们提前半个月就订好了，貌似是那种便宜的飞机总会有改签的烦恼，来回的两班都取消改成别的航班，我们前一天晚上才知道第二天要走的消息，匆匆忙忙的准备，也庆幸我们提前一天来到大连，可以休息一天缓解旅途的疲惫。在大连的那几天也挺紧张的，虽然最后我们是三等奖，但也挺高兴的。比完赛就去海事大学找强哥跟熊了，玩儿了一天半就回大武汉了，时间挺紧的（临走那天吃的牛肉面可真是不错）。
+大三上学期匆匆的就过去了，没什么特别的感觉，只知道好久没去过自习室，好久没塌下心来看看书了，这个寒假回去需要好好调整一下，迎接大三下和即将到来的大四，还有这就来了的六级考试，加油吧少年～&lt;/p&gt;
+</description>
+        <pubDate>Mon, 17 Dec 2012 23:33:09 +0800</pubDate>
+        <link>http:/blog.zhuer.me/2012/12/e58699e59ca8e69cabe697a5e5898d.html</link>
+        <guid isPermaLink="true">http:/blog.zhuer.me/2012/12/e58699e59ca8e69cabe697a5e5898d.html</guid>
+      </item>
+    
+      <item>
+        <title>我的大学（上）</title>
+        <description>&lt;p&gt;&lt;strong&gt;说是不知不觉，其实大学大学过的还是有点感觉的，不像高中似的，每天重复着同样的东西，没放假之前就准备写个小总结，一直拖到了现在，懒人一个。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt; 现在是大二的暑假，也就是开学就大三了，大学的时光已经过去一半儿了。2年的时间，生活上，学习上，思想上都有了不小的提高。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt; 当初提着大包小包的行李，一个人跑到学校报到，那时候的我心里想法不多，还不知道大学是什么，该怎么去读，当然那时候心里想的最多是大学，应该很轻松才对，老师们都那么说。半年过去了，我知道我的想法是错误的，大学不努力，以后拿什么资本去混这个社会呢？&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;&lt;strong&gt; 我与计算机&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;其实我很幸运，能来学软件工程这个我以前一点儿都不懂的专业，从一个对计算机一窍不通的我，到逐渐的喜欢并爱上这么科学的我，是一个转变，对我来说很好的转变。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;记得大一的一次上机课，在&lt;a href=&quot;http://www.ceeji.net/blog&quot;&gt;ceeji&lt;/a&gt;的指导下，我注册了我的第一个Gmail邮箱，当时是想用Google Reader，从此对Google的热爱一发不可收拾。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;大一下学期，有了自己的笔记本，还是在&lt;a href=&quot;http://www.ceeji.net/blog&quot;&gt;ceeji&lt;/a&gt;的指导下，搭建了自己的blog，接触了Linux并开始喜欢Linux，从此开始了自己的技术学习之旅。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;下学期一个学期，尝试着写了一个类似&lt;a href=&quot;http://i-deally.info/server/secret1.php&quot;&gt;班级通讯录的管理系统&lt;/a&gt;，这是自己写的第一个成型的系统，虽然漏洞百出，但还是很开心。还是这个学期，一个有课的晚上，我和&lt;a href=&quot;http://www.ceeji.net/blog&quot;&gt;ceeji&lt;/a&gt;都没有去上，正是在这个晚上，他给我讲了什么是GFW，方校长是何方神圣，我们从哪里来，要到哪去。。。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt; ACM也是不得不提的，第一个寒假，我跟浩哥，骚勃提前一个星期到学校来参加集训，不过当时没有特别认真的去学习，也感觉自己没有这方面的天赋，然后和ACM的故事没有继续，那会儿没事儿的时候也会打开poj刷两道水题，不过这些日子也没有什么动静了，庆幸的是浩哥和ACM的故事还在继续，而且发展的不错，这个暑假开学后他要去参加区域赛了，在这儿提前祝他能取得好成绩。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;&lt;strong&gt; 我与基友们&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;来自五湖四海的我们，能聚在一起不容易，能有这么多好基友，那就更不易了，兽哥，浩哥，星哥，锋哥，灰灰，人渣路，小丸子，哲妹，基康，小内，2B亮，B哥，小尾巴…&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;能认识你们这帮人，是我的福气，友谊地久天长，我们会一直这么2B下去，不是么？&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;到大学来，在跟女生交往这方面，真心退步了，不是那么主动了，这跟高中时候的我有很大反差，那时候的“风流倜傥”都消失不见了，只剩这份2B还陪伴着我，一直陪伴着。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;&lt;strong&gt; 小话大学里的学习和考试&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;都说到大学学习都是靠自己，其实还真的是要靠自己的，不过有些老师讲的还是不错的，偶尔有些照本宣科的，不去上他的课就是，那些为了项目而活着的老师我也见过，自己不去上课（来了也是年年ppt），找自己的研究生或者博士生代课（的确比他自己讲的好），有时候想跟他单挑，用我强悍的体魄征服他，让他迷失在我的咏春拳下，哈哈。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;大一上学期末，我们一个个的气势汹汹的复习那一门门的考试，焦灼且忙碌着。。。预习+复习，考完一门丢一门，辅导员总是喜欢吓唬当年的我们，××高数挂科到大四还没及格，××因为挂科没法毕业。。。and so on，那时我们真的还小，就像初中的时候主任告诉我们初中的违纪档案会跟你一辈子一样，至于你信不信，我当时是信了，不过复习的终究没那么顺利，有的科目自知分数不会太高。事实证明我们都错了，分数比想象中的要高，我想这就是大学跟高中的不同吧，一学期一堆课等着你，你不用完全掌握依旧可以过关，在这儿我想说的是，如果你心里还有学习这两个字，挂科真的不太容易。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt; 最后希望后两年一切顺利^_^&lt;/strong&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 05 Aug 2012 00:19:56 +0800</pubDate>
+        <link>http:/blog.zhuer.me/2012/08/e68891e79a84e5a4a7e5ada6efbc88e4b88aefbc89.html</link>
+        <guid isPermaLink="true">http:/blog.zhuer.me/2012/08/e68891e79a84e5a4a7e5ada6efbc88e4b88aefbc89.html</guid>
+      </item>
+    
+      <item>
+        <title>修改hosts访问GooglePlus遇到404解决办法</title>
+        <description>&lt;p&gt;大概两周之前，google在大陆的ip好些有不能用了，听大牛说是google自己主动停用的，不知道为神马，于是好些人都是换了hosts或者开Gae才上来，hosts换了以后，偶尔会出现&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://i-deally.info/blog/wp-content/uploads/2012/05/Unnamed-QQ-Screenqwshot.bmp&quot;&gt;&lt;img src=&quot;http://i-deally.info/blog/wp-content/uploads/2012/05/Unnamed-QQ-Screenqwshot.bmp&quot; alt=&quot;google+404&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这是hosts文件中plus.google.com对应ip有问题，大家一般都用的国内的ip，那段ip并不能提供google所有的服务，而且google的ip调整后Google+还会偶尔404，的确挺烦人，查了一下解决办法—换Google的国外ip&lt;/p&gt;
+
+&lt;p&gt;这就需要向国外的DNS查询，Dos下用nslookup命令，因为需要https协议，所以一般查询ip要确保443端口是开放的，一般都查accounts.google.com就可以了。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://i-deally.info/blog/wp-content/uploads/2012/05/QQ截图20120513205341.bmp&quot;&gt;&lt;img src=&quot;http://i-deally.info/blog/wp-content/uploads/2012/05/QQ截图20120513205341.bmp&quot; alt=&quot;查询google的ip&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;上图：向OpenDNS的服务器查询accounts.google.com得到IP&lt;/p&gt;
+
+&lt;p&gt;如果有司污染了所有的google.com域名并且封锁了just-ping网站怎么办呢？没关系，我们打开国内科技网站，搜索Google拿下某某域名的新闻，然后查询一下Google都拿下了那些域名，然后查询下那个域名就行了（大牛建议）&lt;/p&gt;
+
+&lt;p&gt;最后把对应ip写入hosts，刷新dns，重启浏览器即可。&lt;/p&gt;
+
+&lt;p&gt;附上搜到的ip号段，加入hosts，短期内应该不会出现什么问题：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;74.125.31.84 plus.google.com
+
+4.125.224.96 plus.google.com
+
+74.125.224.97 plus.google.com
+
+74.125.224.98 plus.google.com
+
+74.125.224.99 plus.google.com
+
+74.125.224.100 plus.google.com
+
+74.125.224.101 plus.google.com
+
+74.125.224.102 plus.google.com
+
+74.125.224.103 plus.google.com
+
+74.125.224.104 plus.google.com
+
+74.125.224.105 plus.google.com
+
+74.125.224.106 plus.google.com
+
+74.125.224.107 plus.google.com
+
+74.125.224.108 plus.google.com
+
+74.125.224.109 plus.google.com
+
+74.125.224.110 plus.google.com
+
+74.125.224.111 plus.google.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PS:网友的力量是无穷的，你很少能有机会去第一个发现某个问题，遇到问题要盲目的去问别人，自己尝试着解决，有google在，你永远不是一个人^_^
+参考：&lt;a href=&quot;http://mrzzm.blogspot.com/2012/03/hostsgoogle404.html&quot;&gt;http://mrzzm.blogspot.com/2012/03/hostsgoogle404.html&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 15 May 2012 16:25:31 +0800</pubDate>
+        <link>http:/blog.zhuer.me/2012/05/hostse69687e4bbb6e8aebfe997aegoogleplus.html</link>
+        <guid isPermaLink="true">http:/blog.zhuer.me/2012/05/hostse69687e4bbb6e8aebfe997aegoogleplus.html</guid>
+      </item>
+    
+      <item>
+        <title>ubuntu下java环境配置</title>
+        <description>&lt;p&gt;（第一段不是整体，纯属自己墨迹，不喜欢看的可以跳过）&lt;/p&gt;
+
+&lt;p&gt;以前用ubuntu10的时候印象里没有用到过java，当时唯一的记忆就是装过python，因为自己比较喜欢折腾，所以什么东西都想整整，python自己过两个星期吧，没写过什么小东西，计划这个暑假再好好学学（这个计划一定得付诸实施），继续，两个月之前迫于某些原因，从10升到11了，说实话，开始不习惯11的界面，后来偏偏却爱上这个设计了，Unity，自己用着特别舒服，挺佩服设计师们的创意的，好像12.04又升级了，增强了Unity的隐私功能，挺好。&lt;/p&gt;
+
+&lt;p&gt;下面是具体的环境配置：&lt;/p&gt;
+
+&lt;p&gt;1.安装jdk&lt;/p&gt;
+
+&lt;p&gt;2种方式：&lt;/p&gt;
+
+&lt;p&gt;终端安装&lt;/p&gt;
+
+&lt;p&gt;离线下载&lt;/p&gt;
+
+&lt;p&gt;我直接下载解压安装的，东西太大终端安怕会意外中断，其实多半是我多操心，linux的稳定性就不用我说了，我主要是担心手头这个长宽。&lt;/p&gt;
+
+&lt;p&gt;网上下载安装包大概有3中，rpm，bin，gar.tz&lt;/p&gt;
+
+&lt;p&gt;java会自动识别操作系统，ubuntu下载bin就可以直接在终端下安装了，rpm的安装可以参考&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/neohuo/article/details/600339&quot;&gt;http://blog.csdn.net/neohuo/article/details/600339&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;都很直接，解压也是同样的道理。&lt;/p&gt;
+
+&lt;p&gt;2.然后就是环境环境变量的配置&lt;/p&gt;
+
+&lt;p&gt;参考&lt;/p&gt;
+
+&lt;p&gt;http://blog.donews.com/javapro/archive/2005/10/07/579679.aspx（说的挺好的）&lt;/p&gt;
+
+&lt;p&gt;1） PATH环境变量。作用是指定命令搜索路径，在shell下面执行命令时，它会到PATH变量所指定的路径中查找看是否能找到相应的命令程序。我们需要把jdk安装目录下的bin目录增加到现有的PATH变量中，bin目录中包含经常要用到的可执行文件如javac/java/javadoc等待，设置好PATH变量后，就可以在任何目录下执行javac/java等工具了。&lt;/p&gt;
+
+&lt;p&gt;2）&lt;/p&gt;
+
+&lt;p&gt;CLASSPATH环境变量。作用是指定类搜索路径，要使用已经编写好的类，前提当然是能够找到它们了，JVM就是通过CLASSPTH来寻找类的。我们需要把jdk安装目录下的lib子目录中的dt.jar和tools.jar设置到CLASSPATH中，当然，当前目录“.”也必须加入到该变量中。&lt;/p&gt;
+
+&lt;p&gt;3）&lt;/p&gt;
+
+&lt;p&gt;JAVA_HOME环境变量。它指向jdk的安装目录，Eclipse/NetBeans/Tomcat等软件就是通过搜索JAVA_HOME变量来找到并使用安装好的jdk。&lt;/p&gt;
+
+&lt;p&gt;三种配置环境变量的方法&lt;/p&gt;
+
+&lt;p&gt;1） 修改/etc/profile文件&lt;/p&gt;
+
+&lt;p&gt;如果你的计算机仅仅作为开发使用时推荐使用这种方法，因为所有用户的shell都有权使用这些环境变量，可能会给系统带来安全性问题。&lt;/p&gt;
+
+&lt;p&gt;·用文本编辑器打开/etc/profile&lt;/p&gt;
+
+&lt;p&gt;·在profile文件末尾加入：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;JAVA_HOME=/usr/share/jdk1.5.0_05
+
+PATH=$JAVA_HOME/bin:$PATH
+
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+
+export JAVA_HOME
+
+export PATH
+
+export CLASSPATH
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;·重新登录&lt;/p&gt;
+
+&lt;p&gt;·注解&lt;/p&gt;
+
+&lt;p&gt;a. 你要将 /usr/share/jdk1.5.0_05jdk 改为你的jdk安装目录&lt;/p&gt;
+
+&lt;p&gt;b. linux下用冒号“:”来分隔路径&lt;/p&gt;
+
+&lt;p&gt;c. $PATH / $CLASSPATH / $JAVA_HOME 是用来引用原来的环境变量的值在设置环境变量时特别要注意不能把原来的值给覆盖掉了，这是一种&lt;/p&gt;
+
+&lt;p&gt;常见的错误。&lt;/p&gt;
+
+&lt;p&gt;d.CLASSPATH中当前目录“.”不能丢,把当前目录丢掉也是常见的错误。&lt;/p&gt;
+
+&lt;p&gt;e. export是把这三个变量导出为全局变量。&lt;/p&gt;
+
+&lt;p&gt;f. 大小写必须严格区分。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;修改.bashrc文件&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这种方法更为安全，它可以把使用这些环境变量的权限控制到用户级别，如果你需要给某个用户权限使用这些环境变量，你只需要修改其个人用户主目录下的.bashrc文件就可以了。&lt;/p&gt;
+
+&lt;p&gt;·用文本编辑器打开用户目录下的.bashrc文件&lt;/p&gt;
+
+&lt;p&gt;·在.bashrc文件末尾加入：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set JAVA_HOME=/usr/share/jdk1.5.0_05
+
+export JAVA_HOME
+
+set PATH=$JAVA_HOME/bin:$PATH
+
+export PATH
+
+set CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+
+export CLASSPATH
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;·重新登录&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;直接在shell下设置变量&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;不赞成使用这种方法，因为换个shell，你的设置就无效了，因此这种方法仅仅是临时使用，以后要使用的时候又要重新设置，比较麻烦。&lt;/p&gt;
+
+&lt;p&gt;只需在shell终端执行下列命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export JAVA_HOME=/usr/share/jdk1.5.0_05
+
+export PATH=$JAVA_HOME/bin:$PATH
+
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h6 id=&quot;section&quot;&gt;#&lt;/h6&gt;
+
+&lt;p&gt;此处介绍一个命令&lt;/p&gt;
+
+&lt;p&gt;source&lt;/p&gt;
+
+&lt;p&gt;source可以强行让一个脚本去影响当前的环境(他执行该脚本中的全部命令,而不关脚本文件的权限如何设置).&lt;/p&gt;
+
+&lt;p&gt;source命令(从 C Shell 而来)是bash shell的内置命令。点命令，就是一个点符号，(从Bourne Shell而来)是source的另一名称。&lt;/p&gt;
+
+&lt;p&gt;同样的，当前脚本中设置的变量也将作为脚本的环境，source(或点)命令通常用于重新执行刚修改的初始化文件，如 .bash_profile 和 .profile 等等。&lt;/p&gt;
+
+&lt;p&gt;例如，如果在登录后对 .bash_profile 中的 EDITER 和 TERM 变量做了修改，则可以用source命令重新执行 .bash_profile 中的命令而不用注销并重新登录。把两个命令用&amp;amp;&amp;amp;联接起来，如 make mrproper &amp;amp;&amp;amp;make menuconfig ，表示要第一个命令执行成功才能执行第二个命令。&lt;/p&gt;
+
+&lt;p&gt;参考：&lt;a href=&quot;http://www.linuxsense.org/archives/137.html&quot;&gt;http://www.linuxsense.org/archives/137.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这里讲的也不错&lt;a href=&quot;http://blog.csdn.net/simon_dong618/article/details/1581132&quot;&gt; http://blog.csdn.net/simon_dong618/article/details/1581132&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;懂了吧，修改环境变量，不用重新登录喽，还不赖吧，有兴趣的话自己去探索探索，我在这里就不赘述了。&lt;/p&gt;
+
+&lt;p&gt;java的配置就到这里，尽情的在java的世界挥霍吧&lt;/p&gt;
+</description>
+        <pubDate>Tue, 15 May 2012 01:50:03 +0800</pubDate>
+        <link>http:/blog.zhuer.me/2012/05/ubuntue4b88bjavae78eafe5a283e9858de7bdae.html</link>
+        <guid isPermaLink="true">http:/blog.zhuer.me/2012/05/ubuntue4b88bjavae78eafe5a283e9858de7bdae.html</guid>
+      </item>
+    
+      <item>
+        <title>生活小感-关于未来</title>
+        <description>&lt;p&gt;《AA制生活》前天看完了，剧情挺狗血的，刻画了婚前婚后的种种，三对新人，工作到结婚。我最喜欢的是第三对，大伟和廖晨。&lt;/p&gt;
+
+&lt;p&gt;不知道现在是否应该对自己的未来有那么明确的计划，目前大二，应该会继续读研究生，然后工作。这只是现在的打算，也许明天就变了，也许大三下的时候会有个别的选择。其实也就那么几种选择，大四毕业工作或者出国或读研，或者创业。这篇文章想表达的主要是对未来生活和婚姻方面的一些看法和疑问。（心里好多话，不一定都能表达出来）&lt;/p&gt;
+
+&lt;p&gt;从小在农村长大，对于家乡有着很深的感情，当然，工作应该不会在我们县城，一来你没有关系，二来县城也没有对口的工作，虽然将来还真不一定从事计算机相关专业，可是也要到大城市去闯闯，不知道会不会留在南方，上海或者深圳，都挺好的。但是我这个人比较恋家，比较喜欢热闹，喜欢跟老朋友一起开心，快活，现在时不时的就在想以后领着媳妇儿跟朋友一起打台球啊，打篮球啊什么的，多好的事儿啊，想着就开心。现实是残酷的，为了生存，我们这帮同学必定会各奔东西，各有各的事业，工作不在一个城市的话，是很难聚到一起一块儿玩儿的。&lt;/p&gt;
+
+&lt;p&gt;天津北京应该是朋友最多的地方，我在想我会不会奔向那里，到那里工作，生活。&lt;/p&gt;
+
+&lt;p&gt;我以前问过爸妈，说以后我有钱了，接他们去大城市，他们那时候的想法是“你到时候能自己养活自己就不错了，知道在那边买房多贵么?就算你有钱，我们俩也不会去的，那边没法串门，没人聊天，闲着寂寞”，他们都比较现实，现在我也变得很现实，尤其是看了那么多连续剧以后（不知道现实的对不对），在几天的时间内我会想很多事情（不知道白掉多少头发），可能几天后我就忘了，所以我要趁我还记得，把我想的乱起八糟的事儿写下来。&lt;/p&gt;
+
+&lt;p&gt;今天母亲节，打电话过去问候老妈，她还纳闷呢，说我从来没大清早的给她打电话，一句简单的问候，足够了。&lt;/p&gt;
+
+&lt;p&gt;老妈小时候经常说，“儿子，长大了可别有了媳妇儿忘了娘呀“，我会反驳道，”哪能啊，以后娶媳妇儿了，我当家，不跟咱们家似的，啥都听你的“，哈哈，那时候我还没想过那么多，没想过未来会是什么样子。&lt;/p&gt;
+
+&lt;p&gt;现在我开始思考了，以后工作了在城市，我会多久回家看爸妈一次，媳妇儿到时候会不会听我的，我们以后会因为钱的问题闹的不可开交么？婆媳关系是我该考虑的问题么？我是该向着我老妈还是向着我媳妇儿？现在的回答是我肯定会向着我老妈，那是因为我还没有媳妇儿。我会成为一个房奴么？在五环外买套房，过着上班挤地铁，加班到深夜的生活么，那真心不是我想要的。以后老丈人那么如果不同意我跟未来媳妇儿的婚事儿肿么办？闺女是他们的，我能带走么？如果我混的不好，没人要了肿么办？－－－一个无聊的２Ｂ青年对以后可能或者不可能发生的事儿的一些疑问。&lt;/p&gt;
+
+&lt;p&gt;当然，生活不会想电视剧里演的那样，但是也会有各种各样的事儿，长大了离开父母，自己成家立业还真不是件容易的事儿。以前我也曾经想过，要是没有父母的担心，我会不会去上大学，会不会直接高中毕业就去混社会，然后工作，一步一步的升职，最后走向成功，现在想想那时候的想法的确有些天真，那时候我还没看清这个社会，当然，现在我也没看清，我不知道未来会是个什么走向，不知道自己的未来在哪里，只知道现在要好好上学，好好写代码，当然学习不能落下，我不想考研，觉得那有些辛苦，有些浪费时间（说实话，真考的话还不一定能考上呢）。&lt;/p&gt;
+
+&lt;p&gt;生活依旧继续，现在是大二的下学期，再过一年，我的人生会比现在更加明朗一些，也更加有奔头一些，为了那微不足道的理想和残酷的现实，我要努力，努力成为不为社会所抛弃的人。&lt;/p&gt;
+
+&lt;p&gt;ＰS:说话向来语无伦次，欢迎大家给一个即将步入社会的2B青年传道授业解惑^-^&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 13 May 2012 13:12:40 +0800</pubDate>
+        <link>http:/blog.zhuer.me/2012/05/e585b3e4ba8ee69caae69da5.html</link>
+        <guid isPermaLink="true">http:/blog.zhuer.me/2012/05/e585b3e4ba8ee69caae69da5.html</guid>
+      </item>
+    
+      <item>
+        <title>Ubuntu 11下搭建ACE/TAO环境</title>
+        <description>&lt;ol&gt;
+  &lt;li&gt;基本环境的下载安装&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;在终端运行 sudo apt-get install xxx 命令，其中xxx如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;build-essential   libssl-dev   libace-dev   libtao-dev   libtao-orbsvcs-dev   gperf   gperf-ace   tao-idl   mpc-ace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;环境变量配置&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;a. 打开/home/clark/目录下的.bashrc文件（注：clark为用户名，.bashrc文件为隐藏文件，可通过快捷方式ctrl+h显示），然后在其结尾添加如下内容：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;##########################################
+
+# set ace/tao environment
+
+ACE_ROOT=/usr/lib/ace; export ACE_ROOT
+
+TAO_ROOT=$ACE_ROOT/TAO; export TAO_ROOT
+
+LD_LIBRARY_PATH=$ACE_ROOT/lib:$LD_LIBRARY_PATH; export LD_LIBRARY_PATH
+
+PATH=$ACE_ROOT/bin:$PATH; export PATH
+
+CIAO_ROOT=$TAO_ROOT/CIAO; export CIAO_ROOT
+
+DANCE_ROOT=$TAO_ROOT/DAnCE; export DANCE_ROOT
+
+###########################################
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后在终端运行 source ~/.bashrc，使环境变量的设置生效&lt;/p&gt;
+
+&lt;p&gt;b. 修改 /usr/lib/ace/include/makeinclude/platform_marcos.GNU文件，在其结尾出添加如下内容（需要赋予该文件可写权限）：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# for tao
+
+TAO_IDL := $(ACE_ROOT)/bin/tao_idl
+
+TAO_IDLFLAGS += -g $(ACE_ROOT)/bin/gperf
+
+TAO_IDL_DEP := $(ACE_ROOT)/bin/tao_idl$(EXEEXT)
+
+c. 添加tao_idl的快捷方式到bin下，在终端使用命令
+
+ln -s /usr/lib/ace/TAO/tao_idl /usr/lib/ace/bin/tao_idl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装QT，（项目界面用QT实现）完成之后安装qt-ace/tao库，运行命令 sudo apt-get install libtao-qtresource-dev。到此环境配置结束。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在新建Qt GUI项目时，需向其**.pro文件中添加如下内容：&lt;/p&gt;
+
+    &lt;p&gt;INCLUDEPATH += /usr/include/ace /usr/include/tao&lt;/p&gt;
+
+    &lt;p&gt;LIBS += -L/usr/lib -lACE -lTAO -lTAO_PortableServer -lTAO_AnyTypeCode -lTAO_QtResource.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;注： 以上是在ubuntu  11 下的搭建，10及几下版本的环境跟11有很大区别，很多配置不一样，可能会发生找不到软件包或者缺少配置文件的错误，大家在配置的时候需要注意。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 05 May 2012 22:39:57 +0800</pubDate>
+        <link>http:/blog.zhuer.me/2012/05/ubuntu-11e4b88be690ade5bbbaace-taoe78eafe5a283.html</link>
+        <guid isPermaLink="true">http:/blog.zhuer.me/2012/05/ubuntu-11e4b88be690ade5bbbaace-taoe78eafe5a283.html</guid>
+      </item>
+    
+      <item>
+        <title>ubuntu折腾小记</title>
+        <description>&lt;p&gt;前两天比较闲的情况下，自己鼓捣了一下ubuntu下的ADSL拨号上网，当时也是折腾了半天，不过最后总算是整好了，当时心里挺美的，详见 &lt;a href=&quot;http://i-deally.info/blog/ubuntu-adsl/&quot;&gt;http://i-deally.info/blog/ubuntu-adsl/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;本以为一劳永逸了，可谁想下一次再开机的时候悲剧发生了，无线跟有线说什么也连不上去了，搜不到无线信号，插有线也不识别，因为是第一次遇到这种情况，当时我挺郁闷的，不知道如何下手。然后开始google相关的资料，有人说是pppoe跟自带的net-manager冲突，说什么net-manager不好用，说是要安个wicd就行了，挺好用的，我一冲动直接net-manager给卸了（冲动是魔鬼）然后我就搜wicd吧，第一次下到的不是deb版，是个官方的不用安装的，需要配置，我就开始按照里面的说的东西一部一部配置，不过总是有个文件找不到，然后就没再配下去了，去找找deb吧，因为ubuntu下网络不可用，所以一直在win7和ubuntu之间切换，很不爽。。。但是我忍了，下好了，切换到ubuntu下安装，还真能按上，图标也出来了，但就是点击以后响应一会儿就没反应了（这是个遗留的问题，还需要继续折腾），切换到root用户下，也是不行。&lt;/p&gt;
+
+&lt;p&gt;好，继续搜索第二种方案，让我重装net-manager（当初我是何苦呢），继续搜net-manager，一共搜了不下10个版本的吧，有的是打开了没反应，有的是安了没法用，各种让我揪心的问题，最后看见个靠谱的说法，在ubuntu下找到自己对应版本的下载地址，到别处下好了在ubuntu下安装，我也是，傻乎乎的下了那么多，也不知道你版本跟别人不一样（windows带来的不好的习惯），按这样我成功装好了net-manager，然后重启，还是那个毛病，无线搜不到，无线插上也没反应，折腾半天又回到原点了，这就是命啊。。。&lt;/p&gt;
+
+&lt;p&gt;这次看到了几个不懂的字儿—&lt;strong&gt;有线网络设备未托管&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;开始搜这个关键词，然后问题顺利解决。参考  &lt;a href=&quot;http://is.gd/KZSfZl&quot;&gt; http://is.gd/KZSfZl&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Linux里面有两套管理网络连接的方案：
+1./etc/network/interfaces（/etc/init.d/networking）
+2.Network-Manager&lt;/p&gt;
+
+&lt;p&gt;第一个方案适用于没有X的环境，如：服务器；或者那些完全不需要改动连接的场合。（X：个人理解代表桌面）
+第二套方案使用于有桌面的环境，特别是笔记本，搬来搬去，网络连接情况随时会变的。&lt;/p&gt;
+
+&lt;p&gt;他们两个为了避免冲突，又能共享配置，就有了下面的解决方案：
+1、当Network-Manager发现/etc/network/interfaces被改动的时候，则关闭自己（显示为未托管），除非managed设置成真。
+2、当managed设置成真时，/etc/network/interfaces，则不生效。&lt;/p&gt;
+
+&lt;p&gt;解决方法真的很是简单，打开/etc/NetworkManager/nm-system-settings.conf，最后一行“managed=false”改为“managed=true”，保存重启搞定。&lt;/p&gt;
+
+&lt;p&gt;其实问题就这么简单，睁开你的双眼，努力寻找问题，其实天很蓝，阴云终要散。&lt;/p&gt;
+
+&lt;p&gt;好了，文艺两句，其实也没那么严重，嘿嘿。。。&lt;/p&gt;
+
+&lt;p&gt;继续我的鼓捣历程。。。&lt;/p&gt;
+
+&lt;p&gt;pppoe拨号设置以后（手贱，设成了开机自动连接），发现每次开机都很慢，特别慢，继续寻找解决办法，还是那个/etc/network/interfaces配置文件，注释掉开始自动联网的那部分就可以了（我的是下面那几行，可能不同机器上配置不一样，对这改一下）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;auto dsl-provider
+iface dsl-provider inet ppp
+pre-up /sbin/ifconfig  eth0 up # line maintained by  pppoeconf
+provider dsl-provider
+auto eth0
+iface eth0 inet manual
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;好了，开机问题解决，下一问题，关机关不掉。以前没遇到到这种问题，那是因为以前没有pad需要充电，linux对外设的管理出于一种安全机制，装系统的时候U盘不拔下来的时候就不会关机，会提醒你拔U盘，把充电的pad拔下来就好了，好了，又一个问题解决（开始很多人讨论是A卡的问题，以前10.10的时候，的确对A卡很不爽，装好系统后右下角的水印怎么也干不掉，就一直在凑合用，迫于其他原因换到了11.10，驱动问题解决了，但还是心有余悸，还好这次不是A卡的问题，以后换本了说啥不用A卡的了）。&lt;/p&gt;
+
+&lt;p&gt;下一个就不是问题了，纯折腾，以前就看见别人说过linux下玩儿游戏，安装个想虚拟机似的东西，模拟windows的环境，额，想安装个CS玩玩儿试试，搜索了一下—-wine，安装过程挺简单的，安装完后安装cs，有个小问题，装完后字体找不到，以至于都是小方块，查了一下，需要改一下字体，具体解决办法：&lt;/p&gt;
+
+&lt;p&gt;1.把 Windows 下的字体（你喜欢的）复制到 ~/.wine/drive_c/windows/fonts里&lt;/p&gt;
+
+&lt;p&gt;2.修改 ~/.wine/system.reg 文件
+[System\CurrentControlSet\Hardware Profiles\Current\Software\Fonts]
+“LogPixels”=dword:00000070
+修改LogPixels值来改变dialog window buttom的字体大小&lt;/p&gt;
+
+&lt;p&gt;3.修改~/.wine/system.reg&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[Software\\Microsoft\\Windows NT\\CurrentVersion\\FontSubstitutes] 1144897563
+&quot;MS Shell Dlg&quot;=&quot;你喜欢的那个字体名称&quot;
+&quot;MS Shell Dlg 2&quot;=&quot;你喜欢的那个字体名称&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;好了，完成，可以玩儿cs了。&lt;/p&gt;
+
+&lt;p&gt;小结：遇到问题不能乱了阵脚，尤其是新手，不能太冲动，没什么是不能解决的。&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 04 May 2012 19:48:48 +0800</pubDate>
+        <link>http:/blog.zhuer.me/2012/05/ubuntue68a98e885bee5b08fe8aeb0.html</link>
+        <guid isPermaLink="true">http:/blog.zhuer.me/2012/05/ubuntue68a98e885bee5b08fe8aeb0.html</guid>
+      </item>
+    
+      <item>
+        <title>本本清灰后的意外烦恼</title>
+        <description>&lt;p&gt;武汉的夏天，38·39度的高温，让身为胖纸的我情何以堪啊，当然，文章的主角不是我，是我这需要熬过这个夏天的本本&lt;/p&gt;
+
+&lt;p&gt;华硕小本，一人一本，哈哈，给华硕做个广告^_^&lt;/p&gt;
+
+&lt;p&gt;其实本本的散热一直不错的，不过前几天大家都开始为了这个即将到来的夏天准备，拆本本，清灰，我也就忍不住了，自己手艺不行，拿着本本去了华中地区的电子集聚中心—广埠屯（当然也是奸商集聚中心），把电脑里的灰小清了一下。&lt;/p&gt;
+
+&lt;p&gt;那个技术男用纯熟的手法，把本本拆开了，其实里面灰也不多，不知道对散热的影响有多大，本本买了一年半了，加上武汉这边空气质量也不是很好，有点儿纳闷儿，为啥就这点儿灰，还收了我50大洋，不甘心呐&amp;amp;（&amp;amp;（&lt;em&gt;&amp;amp;&lt;/em&gt;……*%%&amp;amp;……%&amp;amp;@&lt;/p&gt;
+
+&lt;p&gt;直奔主题（我真能墨迹），电脑装好了，双系统进win7，蓝屏重启….&lt;/p&gt;
+
+&lt;p&gt;瞬间我绝望了一下，技术男大哥你到底行不行？只见技术男不紧不慢的把硬盘启动模式从AHCI调整为IDE模式，然后。。然后就没有然后了，进去了&lt;/p&gt;
+
+&lt;p&gt;我也没说啥，试了试电脑，把钱付完谢谢老板就走了&lt;/p&gt;
+
+&lt;p&gt;到宿舍我仔细回想了一下，以前遇到过类似的问题，在用winPE格盘的时候，有的电脑PE进不去，然后把硬盘启动模式改成兼容性强的IDE模式就好了，查了些相关资料，AHCI模式性能相对好些，本来本本配置不高，如果能改回去的话，就尽量改回去吧，但是改到AHCI的时候会蓝屏，我想应该是硬盘的自我保护机制，或者是内部有些地方有损坏吧，IDE启动的时候，win7跟ubuntu都会提示硬盘检测并修复，但是我都是直接进去的，不用纠结，当然选ubuntu了，linux的稳定性就不必我说了吧，平时电脑出啥问题，都是在linux下解决的，也习惯了。&lt;/p&gt;
+
+&lt;p&gt;修复之后，改BIOS选择AHCI模式启动，开机win7会自动装好相关的驱动程序，这个不用自己费心（不过xp好像还没集成AHCI驱动，需要自己下载驱动并安装  &lt;a href=&quot;http://www.itful.com/html/diy/hardware/2009/0607/sata.html&quot;&gt;http://www.itful.com/html/diy/hardware/2009/0607/sata.html&lt;/a&gt;，这篇文章讲的挺清楚的，有兴趣的可以参考一下^_^&lt;/p&gt;
+
+&lt;p&gt;IDE硬盘 &lt;a href=&quot;http://baike.baidu.com/view/1330089.htm&quot;&gt;http://baike.baidu.com/view/1330089.htm&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;AHCI &lt;a href=&quot;http://baike.baidu.com/view/915161.htm&quot;&gt;http://baike.baidu.com/view/915161.htm&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 01 May 2012 23:07:17 +0800</pubDate>
+        <link>http:/blog.zhuer.me/2012/05/e69cace69cace6b885e781b0.html</link>
+        <guid isPermaLink="true">http:/blog.zhuer.me/2012/05/e69cace69cace6b885e781b0.html</guid>
+      </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,107 @@
+---
+author: admin
+comments: true
+date: 2013-03-24 05:10:09+00:00
+layout: post
+slug: utf-8%e6%97%a0bom%e5%92%8cutf-8
+title: UTF-8无BOM和UTF-8两种编码方式的区别
+wordpress_id: 429
+categories:
+- web
+tags:
+- BOM
+- UTF-8
+- 编码
+---
+
+这两天看了一下最近比较火的微信公众平台，也自己申请了个公众帐号，准备测试一下，谁知中途又遇到了蛋疼的编码问题，遂将其记录在案。
+
+
+
+
+参考方倍工作室的一片文章：
+
+
+
+
+[微信公众平台开发模式消息接口开发（50）在线点歌/在线音乐](http://www.cnblogs.com/txw1958/archive/2013/02/26/weixin-if50-music.html)，想要探索一下点歌的功能，于是有了今天这个问题～
+
+
+
+
+首先需要了解的是字符编码，推荐大家看一下阮一峰老师的文章-[字符编码笔记：ASCII，Unicode和UTF-8](http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html),讲解的非常清晰。
+
+
+
+
+下面进入问题讲解：
+
+
+
+
+如下图所示，在搜索音乐的时候会返回一段以json格式保存的字符串，而你要做的就是解析这段字符串，并取得相应的属性值，这看起来是非常简单的，我用的是脚本语言-php。
+
+
+
+
+[![API](http://i-deally.info/blog/wp-content/uploads/2013/03/1.jpg.png)](http://i-deally.info/blog/wp-content/uploads/2013/03/1.jpg.png)
+
+
+
+
+这个简单的问题让我花费了2个小时才解决。
+
+
+
+
+我尝试发送请求给服务器，以获得该字符串，因为以前没有用过php解析json，就先查了一下：
+
+
+
+
+json_decode — 对 JSON 格式的字符串进行编码
+
+
+
+
+问题来了，在解析的时候总是返回NULL，也就是解析不成功，于是我将返回的字符串输出到浏览器，检查了一下发现是正确的（将输出的字符串用json_decode解析），怎么会这样呢，明明是一样的函数字符串啊，一开始我总是在所用的解析函数上寻找原因，未果。
+
+
+
+
+我意识到，可能是编码问题，于是用mb_detect_encoding函数检测了一下返回字符串的编码，是UTF-8无疑，这就略显奇葩了～看来需要来真的了，于是乎我将浏览器断输出的额字符串和服务器返回的进行了对比，果然，长度不一样～坑爹的问题终于要接受最后的审判了。
+
+
+
+
+我用urlencode函数将两个字符串分别进行URL编码并输出，发现服务器端字符串比浏览器解析的多了：%EF%BB%BF%
+
+
+
+
+好吧，直接google这几个字符，第一条结果是维基百科，第二条是Stack Overflow上的一个问题，我进去看了一下，就是字符串编码的问题，其中一个回答：
+
+
+
+
+[![Stack Overflow 回答](http://i-deally.info/blog/wp-content/uploads/2013/03/2.png)](http://i-deally.info/blog/wp-content/uploads/2013/03/2.png)
+
+
+
+
+一针见血的支出了问题的根源所在:UTF-8无BOM和UTF-8两种编码方式的区别—BOM-- A byte order mark (BOM) consists of the character code U+FEFF at the beginning of a data stream, where it can be used as a signature defining the byte order and encoding form, primarily of unmarked plaintext files. Under some higher level protocols, use of a BOM may be mandatory (or prohibited) in the Unicode data stream defined in that protocol.。
+
+
+
+
+BOM放在开头，用于给UTF-16 和 UTF-32 标记字节序（byte order）更详细的解析参考[unicode官网](http://www.unicode.org/faq/utf_bom.html)
+
+
+
+
+[UTF-8](http://zh.wikipedia.org/wiki/UTF-8)则没有字节顺序问题，BOM在UTF-8中的作用就是标志这是一个UTF-8类型的文件。本质上来说UTF-8 不需要 BOM，尽管 Unicode 标准允许在 UTF-8 中使用 BOM，而我们平时所用的编码也都是无BOM的。
+
+
+
+
+我现在想不通的是为何方倍工作室返回的是带BOM的格式。
