@@ -1,0 +1,89 @@
+---
+author: admin
+comments: true
+date: 2012-05-04 11:48:48+00:00
+layout: post
+slug: ubuntu%e6%8a%98%e8%85%be%e5%b0%8f%e8%ae%b0
+title: ubuntu折腾小记
+wordpress_id: 339
+categories:
+- linux
+tags:
+- ADSL
+- linux
+- wine
+- 网络
+---
+
+前两天比较闲的情况下，自己鼓捣了一下ubuntu下的ADSL拨号上网，当时也是折腾了半天，不过最后总算是整好了，当时心里挺美的，详见 [http://i-deally.info/blog/ubuntu-adsl/](http://i-deally.info/blog/ubuntu-adsl/)
+
+本以为一劳永逸了，可谁想下一次再开机的时候悲剧发生了，无线跟有线说什么也连不上去了，搜不到无线信号，插有线也不识别，因为是第一次遇到这种情况，当时我挺郁闷的，不知道如何下手。然后开始google相关的资料，有人说是pppoe跟自带的net-manager冲突，说什么net-manager不好用，说是要安个wicd就行了，挺好用的，我一冲动直接net-manager给卸了（冲动是魔鬼）然后我就搜wicd吧，第一次下到的不是deb版，是个官方的不用安装的，需要配置，我就开始按照里面的说的东西一部一部配置，不过总是有个文件找不到，然后就没再配下去了，去找找deb吧，因为ubuntu下网络不可用，所以一直在win7和ubuntu之间切换，很不爽。。。但是我忍了，下好了，切换到ubuntu下安装，还真能按上，图标也出来了，但就是点击以后响应一会儿就没反应了（这是个遗留的问题，还需要继续折腾），切换到root用户下，也是不行。
+
+好，继续搜索第二种方案，让我重装net-manager（当初我是何苦呢），继续搜net-manager，一共搜了不下10个版本的吧，有的是打开了没反应，有的是安了没法用，各种让我揪心的问题，最后看见个靠谱的说法，在ubuntu下找到自己对应版本的下载地址，到别处下好了在ubuntu下安装，我也是，傻乎乎的下了那么多，也不知道你版本跟别人不一样（windows带来的不好的习惯），按这样我成功装好了net-manager，然后重启，还是那个毛病，无线搜不到，无线插上也没反应，折腾半天又回到原点了，这就是命啊。。。
+
+这次看到了几个不懂的字儿---**有线网络设备未托管**
+
+开始搜这个关键词，然后问题顺利解决。参考  [ http://is.gd/KZSfZl](http://is.gd/KZSfZl)
+
+Linux里面有两套管理网络连接的方案：
+1./etc/network/interfaces（/etc/init.d/networking）
+2.Network-Manager
+
+第一个方案适用于没有X的环境，如：服务器；或者那些完全不需要改动连接的场合。（X：个人理解代表桌面）
+第二套方案使用于有桌面的环境，特别是笔记本，搬来搬去，网络连接情况随时会变的。
+
+他们两个为了避免冲突，又能共享配置，就有了下面的解决方案：
+1、当Network-Manager发现/etc/network/interfaces被改动的时候，则关闭自己（显示为未托管），除非managed设置成真。
+2、当managed设置成真时，/etc/network/interfaces，则不生效。
+
+解决方法真的很是简单，打开/etc/NetworkManager/nm-system-settings.conf，最后一行“managed=false”改为“managed=true”，保存重启搞定。
+
+其实问题就这么简单，睁开你的双眼，努力寻找问题，其实天很蓝，阴云终要散。
+
+好了，文艺两句，其实也没那么严重，嘿嘿。。。
+
+继续我的鼓捣历程。。。
+
+pppoe拨号设置以后（手贱，设成了开机自动连接），发现每次开机都很慢，特别慢，继续寻找解决办法，还是那个/etc/network/interfaces配置文件，注释掉开始自动联网的那部分就可以了（我的是下面那几行，可能不同机器上配置不一样，对这改一下）
+
+    
+    
+    auto dsl-provider
+    iface dsl-provider inet ppp
+    pre-up /sbin/ifconfig  eth0 up # line maintained by  pppoeconf
+    provider dsl-provider
+    auto eth0
+    iface eth0 inet manual
+    
+
+
+好了，开机问题解决，下一问题，关机关不掉。以前没遇到到这种问题，那是因为以前没有pad需要充电，linux对外设的管理出于一种安全机制，装系统的时候U盘不拔下来的时候就不会关机，会提醒你拔U盘，把充电的pad拔下来就好了，好了，又一个问题解决（开始很多人讨论是A卡的问题，以前10.10的时候，的确对A卡很不爽，装好系统后右下角的水印怎么也干不掉，就一直在凑合用，迫于其他原因换到了11.10，驱动问题解决了，但还是心有余悸，还好这次不是A卡的问题，以后换本了说啥不用A卡的了）。
+
+下一个就不是问题了，纯折腾，以前就看见别人说过linux下玩儿游戏，安装个想虚拟机似的东西，模拟windows的环境，额，想安装个CS玩玩儿试试，搜索了一下----wine，安装过程挺简单的，安装完后安装cs，有个小问题，装完后字体找不到，以至于都是小方块，查了一下，需要改一下字体，具体解决办法：
+
+1.把 Windows 下的字体（你喜欢的）复制到 ~/.wine/drive_c/windows/fonts里
+
+2.修改 ~/.wine/system.reg 文件
+[System\\CurrentControlSet\\Hardware Profiles\\Current\\Software\\Fonts]
+"LogPixels"=dword:00000070
+修改LogPixels值来改变dialog window buttom的字体大小
+
+3.修改~/.wine/system.reg
+
+    
+    
+    [Software\\Microsoft\\Windows NT\\CurrentVersion\\FontSubstitutes] 1144897563
+    "MS Shell Dlg"="你喜欢的那个字体名称"
+    "MS Shell Dlg 2"="你喜欢的那个字体名称"
+    
+
+
+好了，完成，可以玩儿cs了。
+
+小结：遇到问题不能乱了阵脚，尤其是新手，不能太冲动，没什么是不能解决的。
+
+
+
+
+
+

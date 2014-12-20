@@ -1,0 +1,11 @@
+# Site settings
+title: "deli's blog"
+email: "xiaorenwu0716@gmail.com"
+description:  "deli's Thoughts on life and code"
+baseurl: ""
+url: ""
+
+# Build settings
+markdown: kramdown
+permalink: /:year/:month/:title.html
+comments: true

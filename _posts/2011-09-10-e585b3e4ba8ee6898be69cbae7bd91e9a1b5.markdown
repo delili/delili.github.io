@@ -1,0 +1,43 @@
+---
+author: admin
+comments: true
+date: 2011-09-10 16:46:31+00:00
+layout: post
+slug: '%e5%85%b3%e4%ba%8e%e6%89%8b%e6%9c%ba%e7%bd%91%e9%a1%b5'
+title: 关于手机网页--
+wordpress_id: 213
+categories:
+- web
+tags:
+- web
+---
+
+编码呀编码
+
+因为通讯录查询主要是在手机上比较方便,所以我删了点儿内容,就成手机版了
+
+这不久出现问题了么
+
+当时是因为查询数据不成功,我检查了一下查询的语句,都没啥问题
+
+于是乎我又在电脑上测试,发现可以查询
+
+我手机上用OPERA测试了一下,发现也木有问题
+
+我感觉是UC的问题...(语法要求过于严格????)
+
+恩,我开始调试
+
+在膜拜冀哥的基础上,我成功了.....
+
+<DOCTYPE>
+
+关于这个东东,我不想多说[http://www.w3schools.com/tags/tag_doctype.asp](http://www.w3schools.com/tags/tag_doctype.asp)
+
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+
+轻松解决问题
+
+
+
+

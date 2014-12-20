@@ -1,0 +1,15 @@
+---
+author: admin
+comments: true
+date: 2011-06-09 03:22:14+00:00
+layout: post
+slug: '%e5%a4%84%e5%a5%b3%e7%af%87'
+title: 处女篇
+wordpress_id: 5
+categories:
+- 杂文
+tags:
+- 生活
+---
+
+这是第一篇文章,单纯是为了纪念...
