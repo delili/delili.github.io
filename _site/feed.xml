@@ -3,8 +3,98 @@
   <channel>
     <title>deli&#39;s blog</title>
     <description>deli&#39;s Thoughts on life and code</description>
-    <link>http:/blog.zhuer.me/</link>
-    <atom:link href="http:/blog.zhuer.me/feed.xml" rel="self" type="application/rss+xml" />
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>你没有看到的月亮</title>
+        <description>&lt;hr /&gt;
+&lt;p&gt;生活
+———&lt;/p&gt;
+
+&lt;p&gt;四年武汉的生活，有点不太习惯这么长的北方的冬天，光秃秃的树枝，枯萎的草木像是在告诉我，“孩子，醒醒，你现在是在北方了”。北方的冬天因为有暖气这个必杀技相对来说我更偏爱一些，以前听说南方很多新建的小区也开始有集体供暖了，甚是欣慰。&lt;/p&gt;
+
+&lt;p&gt;离家近了，我也只在十一的时候回家待了3天，不知道是不是在武汉习惯了长时间不回家，到这边一时间还没转换过来。&lt;/p&gt;
+
+&lt;p&gt;这学期台球打得比较多，没事的情况下每周都会去参加台协的周赛，有一群球友是幸福的，特别是可以肆无忌惮的在群里约球，基本上你什么时候想打都可以找到人，甚好。考虑这下学期来了入一根球杆，也希望能自己的水平能够提高一些。羽毛球就打了一次，线还被打断了，可能是因为冬天太冷太干的原因吧，昨天去拉线顺便去隔壁找浩哥蹭了顿饭，也感谢浩哥带我吃鱼。&lt;/p&gt;
+
+&lt;p&gt;前两天一个去深圳工作的高中好基友打电话过来聊天，说自己辞职了，说实话，听到这话的时候我还是有点惊讶的，毕竟也才入职半年，可能是这份工作跟他预想的相差太大吧。《月亮和柳便士》好像是他比较喜欢的，所以这篇文章的题目我也取了一个相关的题目。&lt;/p&gt;
+
+&lt;p&gt;写文章的时候扫了一下豆瓣上记录的这学期看的书，发现已经落下很多了，不能静下心来看书做事总是不行的。&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;学习
+———&lt;/p&gt;
+
+&lt;p&gt;这学期的课程不是很多，主要想在这吐槽一下自己的操作系统面测，因为是结合MIT的jos课程，线下实现起来是比较蛋疼的，学着用vim来看代码，感觉还挺舒服的，说说最后的水水的面测吧。&lt;/p&gt;
+
+&lt;p&gt;说实话没想助教会问最后的进程间通信，自己在复习的时候也一直在看调度，中断那些东西，忽略了最后一部分的内容，所以也是当时问的时候当场看当场答的。&lt;/p&gt;
+
+&lt;p&gt;实验中的简单进程通信是通过两个系统调用&lt;code&gt;sys_ipc_recv&lt;/code&gt; 和 &lt;code&gt;sys_ipc_try_send&lt;/code&gt;,以及他们在用户库中的包装 &lt;code&gt;ipc_recv&lt;/code&gt; 和 &lt;code&gt;ipc_send&lt;/code&gt;实现的。&lt;/p&gt;
+
+&lt;p&gt;接收消息:进程调用 &lt;code&gt;sys_ipc_recv&lt;/code&gt;,系统阻塞当前进程,直到消息被接收到。当一个进程在等待接收消息时,任何其他进程都可以向它发送消息。&lt;/p&gt;
+
+&lt;p&gt;发送消息:进程给定接收进程的 &lt;code&gt;id&lt;/code&gt; 和待发送的内容,调用 &lt;code&gt;sys_ipc_try_send&lt;/code&gt;,如果目标进程的确在等待消息,那么就将消息传递过去并返回0;否则返回&lt;code&gt;-E_IPC_NOT_RECV&lt;/code&gt; 表示目标进程当前并不在等待接收消息。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;pre&gt;&lt;code&gt;static int    
+sys_ipc_recv(void *dstva)    
+{
+   // LAB 4: Your code here.   
+    if (((uint32_t)dstva &amp;lt; UTOP) &amp;amp;&amp;amp; ROUNDDOWN(dstva , PGSIZE) != dstva)        
+        return -E_INVAL;    
+    curenv-&amp;gt;env_ipc_recving = 1;
+    curenv-&amp;gt;env_status = ENV_NOT_RUNNABLE;
+    curenv-&amp;gt;env_ipc_dstva = dstva;
+    curenv-&amp;gt;env_ipc_from = 0;
+    sched_yield ();
+    return 0;
+    //panic(&quot;sys_ipc_recv not implemented&quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;题目大意：进程在等待接收消息的时候是阻塞式的还是非阻塞式的，在哪里设置的，为什么？
+其实问题不难，只是当时实现的时候没有认真去理解助教问题的意思，加上自己对这部分不求甚解的缘故，这道题就没有答出来。&lt;/p&gt;
+
+&lt;p&gt;答案其实很简单，就是在&lt;code&gt;curenv-&amp;gt;env_status = ENV_NOT_RUNNABLE&lt;/code&gt;中设置进程状态为&lt;code&gt;ENV_NOT_RUNNABLE&lt;/code&gt;,在轮询的时候就不会选择此进程再次上CPU。&lt;/p&gt;
+
+&lt;p&gt;简单的一道题，其实反可以反映出我对于这部分甚至整个实验的理解程度。&lt;/p&gt;
+
+&lt;p&gt;反思良久，需要认真。&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 26 Jan 2015 06:04:09 +0800</pubDate>
+        <link>/2015/01/%E4%BD%A0%E6%B2%A1%E6%9C%89%E7%9C%8B%E5%88%B0%E7%9A%84%E6%9C%88%E4%BA%AE.html</link>
+        <guid isPermaLink="true">/2015/01/%E4%BD%A0%E6%B2%A1%E6%9C%89%E7%9C%8B%E5%88%B0%E7%9A%84%E6%9C%88%E4%BA%AE.html</guid>
+      </item>
+    
+      <item>
+        <title>也跨年</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;新的一年，生活继续，精彩依旧&lt;/h2&gt;
+
+</description>
+        <pubDate>Thu, 01 Jan 2015 04:36:09 +0800</pubDate>
+        <link>/2015/01/%E4%B9%9F%E8%B7%A8%E5%B9%B4.html</link>
+        <guid isPermaLink="true">/2015/01/%E4%B9%9F%E8%B7%A8%E5%B9%B4.html</guid>
+      </item>
+    
+      <item>
+        <title>圣诞前的流水</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;从毕业到开学&lt;/h2&gt;
+&lt;p&gt;　　毕6月30号回家的车票，从武汉到北京，已经忘记是哪趟车了，从大三开始好像已经不怎么着急买火车票了，不像刚去武汉那阵子，每次都要早起抢Z字头的车，还要坐卧铺，浩哥教导我说：15个小时以下的，怎么回都无所谓。作为一个大老爷们，一个人走真的是无所谓的。这次晚上的坐票，虽说是很疲惫，我还是非常珍惜毕业一个人回去的行程。也忘记是什么时候开始喜欢在地铁上或者人群中观察人们的样子，想象着他们在家里是一个怎样的父亲，或者是什么样的女儿，挺有趣的。   &lt;br /&gt;
+　　暑假期间老师没要求去做事，说让我放松一个暑假，在这还得谢谢老师。不过我这个人是不喜欢闲的，本来想去趟深圳，各种事情的影响下也没去成，去北京面试了两次，未果。可能印象最深的就是姑姑生病了吧，在医院陪了二十多天，姑姑几次生命垂危，最终还是挺过来了。身体真的非常重要，所以我现在非常注意，运动、休息、饮食等方面，不像是在本科时候那么任性的天天晚睡晚起，天天就打台球不锻炼身体。    &lt;br /&gt;
+　　做饭是书记的另一门功课，午饭基本上我在家的时候都是我来做，烙饼米饭卷子等一系列的主食，加上简单的炒菜，基本上都是老妈教的，把步骤告诉我，感觉简单的菜做起来比较轻松，当然火候和味道肯定不比大厨。自己做一桌6、7个人吃的菜应该不是问题了，只不过没有硬菜，最荤的可能就是水煮肉片了吧，我的目的很明确，以后做给老丈人吃，哦耶。    &lt;br /&gt;
+##学校的3个月##
+　　学校的日子总是美好的，每天上课吃饭做事，当然还有看美女这一项。这学期的课程不多，硬课也只有一门，老师的任务也不重，相对来说算是比较轻松的一学期。台球终于可以有很多人一起玩儿了，三年我觉得我进步应该会很大，多练习多学习。羽毛球上周第一次打，疯羽不错，是我喜欢的风格，可惜第一次打线就断了，到现在也没出去拉。妹子是个永恒的话题，此处省略500字。   &lt;br /&gt;
+　　学习和阅读是我目前来书比较喜欢的，鉴于读书太少的原因，大四入了kwp，给我的感觉不错，现在就是晚上睡前能看个半小时的样子。尴尬的是图书馆借的十几本书好多还没翻过，这有点不像我了，以前都是借书有很大的新鲜感，现在翻不动了呢有点，这个需要检讨了。    &lt;br /&gt;
+　　想想就先写到这吧，今天台协大师赛，一轮游了一趟，一会儿去围观决赛去。&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 20 Dec 2014 23:36:09 +0800</pubDate>
+        <link>/2014/12/%E5%9C%A3%E8%AF%9E%E5%89%8D%E6%B5%81%E6%B0%B4.html</link>
+        <guid isPermaLink="true">/2014/12/%E5%9C%A3%E8%AF%9E%E5%89%8D%E6%B5%81%E6%B0%B4.html</guid>
+      </item>
     
       <item>
         <title>最后一个暑假</title>
@@ -21,8 +111,8 @@
 &lt;p&gt;周末大概是我们这帮人最喜欢的时候吧，来之前没曾想过周末能这么疯狂的去玩儿，回去写一篇大大的周末大连行。&lt;/p&gt;
 </description>
         <pubDate>Sat, 03 Aug 2013 00:04:52 +0800</pubDate>
-        <link>http:/blog.zhuer.me/2013/08/e69c80e5908ee4b880e4b8aae69a91e58187.html</link>
-        <guid isPermaLink="true">http:/blog.zhuer.me/2013/08/e69c80e5908ee4b880e4b8aae69a91e58187.html</guid>
+        <link>/2013/08/e69c80e5908ee4b880e4b8aae69a91e58187.html</link>
+        <guid isPermaLink="true">/2013/08/e69c80e5908ee4b880e4b8aae69a91e58187.html</guid>
       </item>
     
       <item>
@@ -66,8 +156,8 @@
 &lt;p&gt;我现在想不通的是为何方倍工作室返回的是带BOM的格式。&lt;/p&gt;
 </description>
         <pubDate>Sun, 24 Mar 2013 13:10:09 +0800</pubDate>
-        <link>http:/blog.zhuer.me/2013/03/utf-8e697a0bome5928cutf-8.html</link>
-        <guid isPermaLink="true">http:/blog.zhuer.me/2013/03/utf-8e697a0bome5928cutf-8.html</guid>
+        <link>/2013/03/utf-8e697a0bome5928cutf-8.html</link>
+        <guid isPermaLink="true">/2013/03/utf-8e697a0bome5928cutf-8.html</guid>
       </item>
     
       <item>
@@ -83,8 +173,8 @@
 大三上学期匆匆的就过去了，没什么特别的感觉，只知道好久没去过自习室，好久没塌下心来看看书了，这个寒假回去需要好好调整一下，迎接大三下和即将到来的大四，还有这就来了的六级考试，加油吧少年～&lt;/p&gt;
 </description>
         <pubDate>Mon, 17 Dec 2012 23:33:09 +0800</pubDate>
-        <link>http:/blog.zhuer.me/2012/12/e58699e59ca8e69cabe697a5e5898d.html</link>
-        <guid isPermaLink="true">http:/blog.zhuer.me/2012/12/e58699e59ca8e69cabe697a5e5898d.html</guid>
+        <link>/2012/12/e58699e59ca8e69cabe697a5e5898d.html</link>
+        <guid isPermaLink="true">/2012/12/e58699e59ca8e69cabe697a5e5898d.html</guid>
       </item>
     
       <item>
@@ -124,8 +214,8 @@
 &lt;p&gt;&lt;strong&gt; 最后希望后两年一切顺利^_^&lt;/strong&gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 05 Aug 2012 00:19:56 +0800</pubDate>
-        <link>http:/blog.zhuer.me/2012/08/e68891e79a84e5a4a7e5ada6efbc88e4b88aefbc89.html</link>
-        <guid isPermaLink="true">http:/blog.zhuer.me/2012/08/e68891e79a84e5a4a7e5ada6efbc88e4b88aefbc89.html</guid>
+        <link>/2012/08/e68891e79a84e5a4a7e5ada6efbc88e4b88aefbc89.html</link>
+        <guid isPermaLink="true">/2012/08/e68891e79a84e5a4a7e5ada6efbc88e4b88aefbc89.html</guid>
       </item>
     
       <item>
@@ -188,8 +278,8 @@
 
 </description>
         <pubDate>Tue, 15 May 2012 16:25:31 +0800</pubDate>
-        <link>http:/blog.zhuer.me/2012/05/hostse69687e4bbb6e8aebfe997aegoogleplus.html</link>
-        <guid isPermaLink="true">http:/blog.zhuer.me/2012/05/hostse69687e4bbb6e8aebfe997aegoogleplus.html</guid>
+        <link>/2012/05/hostse69687e4bbb6e8aebfe997aegoogleplus.html</link>
+        <guid isPermaLink="true">/2012/05/hostse69687e4bbb6e8aebfe997aegoogleplus.html</guid>
       </item>
     
       <item>
@@ -338,8 +428,8 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 &lt;p&gt;java的配置就到这里，尽情的在java的世界挥霍吧&lt;/p&gt;
 </description>
         <pubDate>Tue, 15 May 2012 01:50:03 +0800</pubDate>
-        <link>http:/blog.zhuer.me/2012/05/ubuntue4b88bjavae78eafe5a283e9858de7bdae.html</link>
-        <guid isPermaLink="true">http:/blog.zhuer.me/2012/05/ubuntue4b88bjavae78eafe5a283e9858de7bdae.html</guid>
+        <link>/2012/05/ubuntue4b88bjavae78eafe5a283e9858de7bdae.html</link>
+        <guid isPermaLink="true">/2012/05/ubuntue4b88bjavae78eafe5a283e9858de7bdae.html</guid>
       </item>
     
       <item>
@@ -368,180 +458,8 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 
 </description>
         <pubDate>Sun, 13 May 2012 13:12:40 +0800</pubDate>
-        <link>http:/blog.zhuer.me/2012/05/e585b3e4ba8ee69caae69da5.html</link>
-        <guid isPermaLink="true">http:/blog.zhuer.me/2012/05/e585b3e4ba8ee69caae69da5.html</guid>
-      </item>
-    
-      <item>
-        <title>Ubuntu 11下搭建ACE/TAO环境</title>
-        <description>&lt;ol&gt;
-  &lt;li&gt;基本环境的下载安装&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;在终端运行 sudo apt-get install xxx 命令，其中xxx如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;build-essential   libssl-dev   libace-dev   libtao-dev   libtao-orbsvcs-dev   gperf   gperf-ace   tao-idl   mpc-ace
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;环境变量配置&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;a. 打开/home/clark/目录下的.bashrc文件（注：clark为用户名，.bashrc文件为隐藏文件，可通过快捷方式ctrl+h显示），然后在其结尾添加如下内容：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;##########################################
-
-# set ace/tao environment
-
-ACE_ROOT=/usr/lib/ace; export ACE_ROOT
-
-TAO_ROOT=$ACE_ROOT/TAO; export TAO_ROOT
-
-LD_LIBRARY_PATH=$ACE_ROOT/lib:$LD_LIBRARY_PATH; export LD_LIBRARY_PATH
-
-PATH=$ACE_ROOT/bin:$PATH; export PATH
-
-CIAO_ROOT=$TAO_ROOT/CIAO; export CIAO_ROOT
-
-DANCE_ROOT=$TAO_ROOT/DAnCE; export DANCE_ROOT
-
-###########################################
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;然后在终端运行 source ~/.bashrc，使环境变量的设置生效&lt;/p&gt;
-
-&lt;p&gt;b. 修改 /usr/lib/ace/include/makeinclude/platform_marcos.GNU文件，在其结尾出添加如下内容（需要赋予该文件可写权限）：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# for tao
-
-TAO_IDL := $(ACE_ROOT)/bin/tao_idl
-
-TAO_IDLFLAGS += -g $(ACE_ROOT)/bin/gperf
-
-TAO_IDL_DEP := $(ACE_ROOT)/bin/tao_idl$(EXEEXT)
-
-c. 添加tao_idl的快捷方式到bin下，在终端使用命令
-
-ln -s /usr/lib/ace/TAO/tao_idl /usr/lib/ace/bin/tao_idl
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;安装QT，（项目界面用QT实现）完成之后安装qt-ace/tao库，运行命令 sudo apt-get install libtao-qtresource-dev。到此环境配置结束。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;在新建Qt GUI项目时，需向其**.pro文件中添加如下内容：&lt;/p&gt;
-
-    &lt;p&gt;INCLUDEPATH += /usr/include/ace /usr/include/tao&lt;/p&gt;
-
-    &lt;p&gt;LIBS += -L/usr/lib -lACE -lTAO -lTAO_PortableServer -lTAO_AnyTypeCode -lTAO_QtResource.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;注： 以上是在ubuntu  11 下的搭建，10及几下版本的环境跟11有很大区别，很多配置不一样，可能会发生找不到软件包或者缺少配置文件的错误，大家在配置的时候需要注意。&lt;/p&gt;
-</description>
-        <pubDate>Sat, 05 May 2012 22:39:57 +0800</pubDate>
-        <link>http:/blog.zhuer.me/2012/05/ubuntu-11e4b88be690ade5bbbaace-taoe78eafe5a283.html</link>
-        <guid isPermaLink="true">http:/blog.zhuer.me/2012/05/ubuntu-11e4b88be690ade5bbbaace-taoe78eafe5a283.html</guid>
-      </item>
-    
-      <item>
-        <title>ubuntu折腾小记</title>
-        <description>&lt;p&gt;前两天比较闲的情况下，自己鼓捣了一下ubuntu下的ADSL拨号上网，当时也是折腾了半天，不过最后总算是整好了，当时心里挺美的，详见 &lt;a href=&quot;http://i-deally.info/blog/ubuntu-adsl/&quot;&gt;http://i-deally.info/blog/ubuntu-adsl/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;本以为一劳永逸了，可谁想下一次再开机的时候悲剧发生了，无线跟有线说什么也连不上去了，搜不到无线信号，插有线也不识别，因为是第一次遇到这种情况，当时我挺郁闷的，不知道如何下手。然后开始google相关的资料，有人说是pppoe跟自带的net-manager冲突，说什么net-manager不好用，说是要安个wicd就行了，挺好用的，我一冲动直接net-manager给卸了（冲动是魔鬼）然后我就搜wicd吧，第一次下到的不是deb版，是个官方的不用安装的，需要配置，我就开始按照里面的说的东西一部一部配置，不过总是有个文件找不到，然后就没再配下去了，去找找deb吧，因为ubuntu下网络不可用，所以一直在win7和ubuntu之间切换，很不爽。。。但是我忍了，下好了，切换到ubuntu下安装，还真能按上，图标也出来了，但就是点击以后响应一会儿就没反应了（这是个遗留的问题，还需要继续折腾），切换到root用户下，也是不行。&lt;/p&gt;
-
-&lt;p&gt;好，继续搜索第二种方案，让我重装net-manager（当初我是何苦呢），继续搜net-manager，一共搜了不下10个版本的吧，有的是打开了没反应，有的是安了没法用，各种让我揪心的问题，最后看见个靠谱的说法，在ubuntu下找到自己对应版本的下载地址，到别处下好了在ubuntu下安装，我也是，傻乎乎的下了那么多，也不知道你版本跟别人不一样（windows带来的不好的习惯），按这样我成功装好了net-manager，然后重启，还是那个毛病，无线搜不到，无线插上也没反应，折腾半天又回到原点了，这就是命啊。。。&lt;/p&gt;
-
-&lt;p&gt;这次看到了几个不懂的字儿—&lt;strong&gt;有线网络设备未托管&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;开始搜这个关键词，然后问题顺利解决。参考  &lt;a href=&quot;http://is.gd/KZSfZl&quot;&gt; http://is.gd/KZSfZl&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Linux里面有两套管理网络连接的方案：
-1./etc/network/interfaces（/etc/init.d/networking）
-2.Network-Manager&lt;/p&gt;
-
-&lt;p&gt;第一个方案适用于没有X的环境，如：服务器；或者那些完全不需要改动连接的场合。（X：个人理解代表桌面）
-第二套方案使用于有桌面的环境，特别是笔记本，搬来搬去，网络连接情况随时会变的。&lt;/p&gt;
-
-&lt;p&gt;他们两个为了避免冲突，又能共享配置，就有了下面的解决方案：
-1、当Network-Manager发现/etc/network/interfaces被改动的时候，则关闭自己（显示为未托管），除非managed设置成真。
-2、当managed设置成真时，/etc/network/interfaces，则不生效。&lt;/p&gt;
-
-&lt;p&gt;解决方法真的很是简单，打开/etc/NetworkManager/nm-system-settings.conf，最后一行“managed=false”改为“managed=true”，保存重启搞定。&lt;/p&gt;
-
-&lt;p&gt;其实问题就这么简单，睁开你的双眼，努力寻找问题，其实天很蓝，阴云终要散。&lt;/p&gt;
-
-&lt;p&gt;好了，文艺两句，其实也没那么严重，嘿嘿。。。&lt;/p&gt;
-
-&lt;p&gt;继续我的鼓捣历程。。。&lt;/p&gt;
-
-&lt;p&gt;pppoe拨号设置以后（手贱，设成了开机自动连接），发现每次开机都很慢，特别慢，继续寻找解决办法，还是那个/etc/network/interfaces配置文件，注释掉开始自动联网的那部分就可以了（我的是下面那几行，可能不同机器上配置不一样，对这改一下）&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;auto dsl-provider
-iface dsl-provider inet ppp
-pre-up /sbin/ifconfig  eth0 up # line maintained by  pppoeconf
-provider dsl-provider
-auto eth0
-iface eth0 inet manual
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;好了，开机问题解决，下一问题，关机关不掉。以前没遇到到这种问题，那是因为以前没有pad需要充电，linux对外设的管理出于一种安全机制，装系统的时候U盘不拔下来的时候就不会关机，会提醒你拔U盘，把充电的pad拔下来就好了，好了，又一个问题解决（开始很多人讨论是A卡的问题，以前10.10的时候，的确对A卡很不爽，装好系统后右下角的水印怎么也干不掉，就一直在凑合用，迫于其他原因换到了11.10，驱动问题解决了，但还是心有余悸，还好这次不是A卡的问题，以后换本了说啥不用A卡的了）。&lt;/p&gt;
-
-&lt;p&gt;下一个就不是问题了，纯折腾，以前就看见别人说过linux下玩儿游戏，安装个想虚拟机似的东西，模拟windows的环境，额，想安装个CS玩玩儿试试，搜索了一下—-wine，安装过程挺简单的，安装完后安装cs，有个小问题，装完后字体找不到，以至于都是小方块，查了一下，需要改一下字体，具体解决办法：&lt;/p&gt;
-
-&lt;p&gt;1.把 Windows 下的字体（你喜欢的）复制到 ~/.wine/drive_c/windows/fonts里&lt;/p&gt;
-
-&lt;p&gt;2.修改 ~/.wine/system.reg 文件
-[System\CurrentControlSet\Hardware Profiles\Current\Software\Fonts]
-“LogPixels”=dword:00000070
-修改LogPixels值来改变dialog window buttom的字体大小&lt;/p&gt;
-
-&lt;p&gt;3.修改~/.wine/system.reg&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[Software\\Microsoft\\Windows NT\\CurrentVersion\\FontSubstitutes] 1144897563
-&quot;MS Shell Dlg&quot;=&quot;你喜欢的那个字体名称&quot;
-&quot;MS Shell Dlg 2&quot;=&quot;你喜欢的那个字体名称&quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;好了，完成，可以玩儿cs了。&lt;/p&gt;
-
-&lt;p&gt;小结：遇到问题不能乱了阵脚，尤其是新手，不能太冲动，没什么是不能解决的。&lt;/p&gt;
-
-</description>
-        <pubDate>Fri, 04 May 2012 19:48:48 +0800</pubDate>
-        <link>http:/blog.zhuer.me/2012/05/ubuntue68a98e885bee5b08fe8aeb0.html</link>
-        <guid isPermaLink="true">http:/blog.zhuer.me/2012/05/ubuntue68a98e885bee5b08fe8aeb0.html</guid>
-      </item>
-    
-      <item>
-        <title>本本清灰后的意外烦恼</title>
-        <description>&lt;p&gt;武汉的夏天，38·39度的高温，让身为胖纸的我情何以堪啊，当然，文章的主角不是我，是我这需要熬过这个夏天的本本&lt;/p&gt;
-
-&lt;p&gt;华硕小本，一人一本，哈哈，给华硕做个广告^_^&lt;/p&gt;
-
-&lt;p&gt;其实本本的散热一直不错的，不过前几天大家都开始为了这个即将到来的夏天准备，拆本本，清灰，我也就忍不住了，自己手艺不行，拿着本本去了华中地区的电子集聚中心—广埠屯（当然也是奸商集聚中心），把电脑里的灰小清了一下。&lt;/p&gt;
-
-&lt;p&gt;那个技术男用纯熟的手法，把本本拆开了，其实里面灰也不多，不知道对散热的影响有多大，本本买了一年半了，加上武汉这边空气质量也不是很好，有点儿纳闷儿，为啥就这点儿灰，还收了我50大洋，不甘心呐&amp;amp;（&amp;amp;（&lt;em&gt;&amp;amp;&lt;/em&gt;……*%%&amp;amp;……%&amp;amp;@&lt;/p&gt;
-
-&lt;p&gt;直奔主题（我真能墨迹），电脑装好了，双系统进win7，蓝屏重启….&lt;/p&gt;
-
-&lt;p&gt;瞬间我绝望了一下，技术男大哥你到底行不行？只见技术男不紧不慢的把硬盘启动模式从AHCI调整为IDE模式，然后。。然后就没有然后了，进去了&lt;/p&gt;
-
-&lt;p&gt;我也没说啥，试了试电脑，把钱付完谢谢老板就走了&lt;/p&gt;
-
-&lt;p&gt;到宿舍我仔细回想了一下，以前遇到过类似的问题，在用winPE格盘的时候，有的电脑PE进不去，然后把硬盘启动模式改成兼容性强的IDE模式就好了，查了些相关资料，AHCI模式性能相对好些，本来本本配置不高，如果能改回去的话，就尽量改回去吧，但是改到AHCI的时候会蓝屏，我想应该是硬盘的自我保护机制，或者是内部有些地方有损坏吧，IDE启动的时候，win7跟ubuntu都会提示硬盘检测并修复，但是我都是直接进去的，不用纠结，当然选ubuntu了，linux的稳定性就不必我说了吧，平时电脑出啥问题，都是在linux下解决的，也习惯了。&lt;/p&gt;
-
-&lt;p&gt;修复之后，改BIOS选择AHCI模式启动，开机win7会自动装好相关的驱动程序，这个不用自己费心（不过xp好像还没集成AHCI驱动，需要自己下载驱动并安装  &lt;a href=&quot;http://www.itful.com/html/diy/hardware/2009/0607/sata.html&quot;&gt;http://www.itful.com/html/diy/hardware/2009/0607/sata.html&lt;/a&gt;，这篇文章讲的挺清楚的，有兴趣的可以参考一下^_^&lt;/p&gt;
-
-&lt;p&gt;IDE硬盘 &lt;a href=&quot;http://baike.baidu.com/view/1330089.htm&quot;&gt;http://baike.baidu.com/view/1330089.htm&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;AHCI &lt;a href=&quot;http://baike.baidu.com/view/915161.htm&quot;&gt;http://baike.baidu.com/view/915161.htm&lt;/a&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 01 May 2012 23:07:17 +0800</pubDate>
-        <link>http:/blog.zhuer.me/2012/05/e69cace69cace6b885e781b0.html</link>
-        <guid isPermaLink="true">http:/blog.zhuer.me/2012/05/e69cace69cace6b885e781b0.html</guid>
+        <link>/2012/05/e585b3e4ba8ee69caae69da5.html</link>
+        <guid isPermaLink="true">/2012/05/e585b3e4ba8ee69caae69da5.html</guid>
       </item>
     
   </channel>

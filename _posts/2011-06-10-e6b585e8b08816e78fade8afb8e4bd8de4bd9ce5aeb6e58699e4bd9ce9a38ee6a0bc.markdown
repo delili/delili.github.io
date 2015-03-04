@@ -4,7 +4,7 @@ comments: true
 date: 2011-06-10 06:34:58+00:00
 layout: post
 slug: '%e6%b5%85%e8%b0%8816%e7%8f%ad%e8%af%b8%e4%bd%8d%e4%bd%9c%e5%ae%b6%e5%86%99%e4%bd%9c%e9%a3%8e%e6%a0%bc'
-title: 浅谈16班诸位"作家"写作风格
+title: 浅谈16班诸位“作家”写作风格
 wordpress_id: 18
 categories:
 - 关于0716

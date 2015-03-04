@@ -6,7 +6,6 @@ layout: post
 slug: about
 title: 关于deli
 wordpress_id: 270
-
 ---
 
 

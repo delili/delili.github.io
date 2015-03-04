@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>你没有看到的月亮</title>
+  <meta name="author" content="Ruoyu Sun" />
+  <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/css/prettify.css" type="text/css" media="screen, projection" />
+  <script type="text/javascript" src="/js/prettify.js"></script>
+  <script type="text/javascript" src="/js/prettify-lua.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-41001497-1', 'ruoyusun.com');
+    ga('send', 'pageview');
+  </script>
+</head>
+<body onload="prettyPrint()">
+
+  <div class="container">
+
+    <div class="header">
+      <h1><a href="/">deli's</a></h1>
+      <h2>Thoughts on life and code</h2>
+    </div>
+
+    <div class="nav">
+      <a href="/archive.html">Archive</a>
+      <a href="/about.html">About</a>
+    </div>
+
+    <div class="content">
+	<h1>你没有看到的月亮</h1>
+	<p class="meta">26 Jan 2015</p>
+	<hr />
+<p>生活
+———</p>
+
+<p>四年武汉的生活，有点不太习惯这么长的北方的冬天，光秃秃的树枝，枯萎的草木像是在告诉我，“孩子，醒醒，你现在是在北方了”。北方的冬天因为有暖气这个必杀技相对来说我更偏爱一些，以前听说南方很多新建的小区也开始有集体供暖了，甚是欣慰。</p>
+
+<p>离家近了，我也只在十一的时候回家待了3天，不知道是不是在武汉习惯了长时间不回家，到这边一时间还没转换过来。</p>
+
+<p>这学期台球打得比较多，没事的情况下每周都会去参加台协的周赛，有一群球友是幸福的，特别是可以肆无忌惮的在群里约球，基本上你什么时候想打都可以找到人，甚好。考虑这下学期来了入一根球杆，也希望能自己的水平能够提高一些。羽毛球就打了一次，线还被打断了，可能是因为冬天太冷太干的原因吧，昨天去拉线顺便去隔壁找浩哥蹭了顿饭，也感谢浩哥带我吃鱼。</p>
+
+<p>前两天一个去深圳工作的高中好基友打电话过来聊天，说自己辞职了，说实话，听到这话的时候我还是有点惊讶的，毕竟也才入职半年，可能是这份工作跟他预想的相差太大吧。《月亮和柳便士》好像是他比较喜欢的，所以这篇文章的题目我也取了一个相关的题目。</p>
+
+<p>写文章的时候扫了一下豆瓣上记录的这学期看的书，发现已经落下很多了，不能静下心来看书做事总是不行的。</p>
+
+<hr />
+<p>学习
+———</p>
+
+<p>这学期的课程不是很多，主要想在这吐槽一下自己的操作系统面测，因为是结合MIT的jos课程，线下实现起来是比较蛋疼的，学着用vim来看代码，感觉还挺舒服的，说说最后的水水的面测吧。</p>
+
+<p>说实话没想助教会问最后的进程间通信，自己在复习的时候也一直在看调度，中断那些东西，忽略了最后一部分的内容，所以也是当时问的时候当场看当场答的。</p>
+
+<p>实验中的简单进程通信是通过两个系统调用<code>sys_ipc_recv</code> 和 <code>sys_ipc_try_send</code>,以及他们在用户库中的包装 <code>ipc_recv</code> 和 <code>ipc_send</code>实现的。</p>
+
+<p>接收消息:进程调用 <code>sys_ipc_recv</code>,系统阻塞当前进程,直到消息被接收到。当一个进程在等待接收消息时,任何其他进程都可以向它发送消息。</p>
+
+<p>发送消息:进程给定接收进程的 <code>id</code> 和待发送的内容,调用 <code>sys_ipc_try_send</code>,如果目标进程的确在等待消息,那么就将消息传递过去并返回0;否则返回<code>-E_IPC_NOT_RECV</code> 表示目标进程当前并不在等待接收消息。</p>
+
+<blockquote>
+  <pre><code>static int    
+sys_ipc_recv(void *dstva)    
+{
+   // LAB 4: Your code here.   
+    if (((uint32_t)dstva &lt; UTOP) &amp;&amp; ROUNDDOWN(dstva , PGSIZE) != dstva)        
+        return -E_INVAL;    
+    curenv-&gt;env_ipc_recving = 1;
+    curenv-&gt;env_status = ENV_NOT_RUNNABLE;
+    curenv-&gt;env_ipc_dstva = dstva;
+    curenv-&gt;env_ipc_from = 0;
+    sched_yield ();
+    return 0;
+    //panic("sys_ipc_recv not implemented");
+}
+</code></pre>
+</blockquote>
+
+<p>题目大意：进程在等待接收消息的时候是阻塞式的还是非阻塞式的，在哪里设置的，为什么？
+其实问题不难，只是当时实现的时候没有认真去理解助教问题的意思，加上自己对这部分不求甚解的缘故，这道题就没有答出来。</p>
+
+<p>答案其实很简单，就是在<code>curenv-&gt;env_status = ENV_NOT_RUNNABLE</code>中设置进程状态为<code>ENV_NOT_RUNNABLE</code>,在轮询的时候就不会选择此进程再次上CPU。</p>
+
+<p>简单的一道题，其实反可以反映出我对于这部分甚至整个实验的理解程度。</p>
+
+<p>反思良久，需要认真。</p>
+
+
+</div>
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'delizzz'; // required: replace example with your forum shortname
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</body>
+</html>
