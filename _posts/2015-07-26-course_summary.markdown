@@ -18,7 +18,7 @@ tags:
 - **《云计算技术及应用》**
    
 前期老师普及了一下云计算相关概念，讲了一下最近很火的docker；接下来开始由同学讲论文，论文都来自于[cloudcom2014][1],我选的论文是"[TraceBench An Open Data Set for Trace-Oriented Monitoring][2]" ,一篇关于trace数据集生成及系统架构的文章，后面的应用部分由于没有相关的应用经验，读起来挺费劲的。
-最后做了一个简单的综述报告，找了3篇trace系统相关的文章，报告在这里下载。   
+最后做了一个简单的综述报告，找了3篇trace系统相关的文章，对比分析了一下，不过只有15分钟，对文章并没有精读。   
 值得一提的是，老师最后请来了一位在google工作N年的师兄（现已回国创业）和一位来自IBM CRL的刚中了一篇sigmod的大牛来跟我们深入交流，收获颇丰。
 
  - **《软件工程前沿专题》**
@@ -35,7 +35,7 @@ tags:
  - **《机器学习》**
    
 计算语言所的课，因此作业都是文本NLP相关问题。老师讲得还行，只是总是自己在讲，缺乏互动了。也请老师原谅我对公式的推倒与被推倒部分没有用心听（其实是数学太差听不下去），只好自己去看看感兴趣的部分了。老师每次上课前都会把这次课的内容放到course上，还是很贴心的，可以让我提前决定这节课去不去上。   
-一共三次作业，一次课堂测试。三次作业分别是关于评论情感分类、人名消歧和中文分词（或中文词性标注）的，作业代码放到git上了。   
+一共三次作业，一次课堂测试。三次作业分别是关于评论情感分类、人名消歧和中文分词（或中文词性标注）的，作业代码放到[git][4]上了。   
 这门课自己动手稍微多一些，理论上学到的比较少（太懒）。遗憾的是没能在这课上实践一下深度学习的方法。
 
 
@@ -44,4 +44,5 @@ tags:
 
   [1]: http://2014.cloudcom.org/
   [2]: http://ieeexplore.ieee.org/xpl/articleDetails.jsp?reload=true&arnumber=7037711&punumber=7031670&sortType=asc_p_Sequence&filter=AND%28p_IS_Number:7036227%29&pageNumber=4
-  [3]: https://www.kaggle.com/c/word2vec-nlp-tutorial/forums/t/11261/beat-the-benchmark-with-shallow-learning-0-95-lb
+  [3]: https://www.kaggle.com/c/word2vec-nlp-tutorial/forums/t/11261/beat-the-benchmark-with-shallow-learning-0-95-lb    
+  [4]: https://github.com/delili?tab=repositories  
