@@ -33,28 +33,28 @@ tags:
 同是版本问题，升级到3.0之后，addUser函数改为createUser()，如果我们参考的是之前的版本来建立用户的话，则会报错。3.0之后建立用户须传递的对象如下，详细参数可参考[官方文档][4]：
 
 >
-{
-	user: "username",
-	pwd: "passphrase",
-  	roles: [{ 
-        role: "userAdminAnyDatabase", 
-        db: "admin" 
-    }］
-}
+	{
+		user: "username",
+		pwd: "passphrase",
+	  	roles: [{ 
+	        role: "userAdminAnyDatabase", 
+	        db: "admin" 
+	    }］
+	}
 
 
 - 坑3 配置文件中设置mongodb的用户名和密码项
 
 >
-<bean id="mongoDbFactory" class="org.springframework.data.mongodb.core.SimpleMongoDbFactory">
-    <constructor-arg name="mongo" ref="mongo" />
-    <constructor-arg name="databaseName" value="databaseName" />
-    <constructor-arg name="credentials" ref="userCredentials" />
-</bean>
-<bean id="userCredentials" class="org.springframework.data.authentication.UserCredentials">
-    <constructor-arg name="username" value="username" />
-	<constructor-arg name="password" value="password" />
-</bean>
+	<bean id="mongoDbFactory" class="org.springframework.data.mongodb.core.SimpleMongoDbFactory">
+	    <constructor-arg name="mongo" ref="mongo" />
+	    <constructor-arg name="databaseName" value="databaseName" />
+	    <constructor-arg name="credentials" ref="userCredentials" />
+	</bean>
+	<bean id="userCredentials" class="org.springframework.data.authentication.UserCredentials">
+	    <constructor-arg name="username" value="username" />
+		<constructor-arg name="password" value="password" />
+	</bean>
 
 其余就是一步步的配置了，参考[这篇博客][5]就好。
 
