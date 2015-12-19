@@ -10,7 +10,7 @@ wordpress_id: 270
 
 
 
-我是deli，[武汉大学](http://www.whu.edu.cn)[国际软件学院](http://iss.whu.edu.cn/)本科，帝都某高校研究生，出生于天津市蓟县的一个安静祥和的乡村 ，目前居住于圆明园附近。
+我是deli，[武汉大学](http://www.whu.edu.cn)[国际软件学院](http://iss.whu.edu.cn/)本科，帝都某高校硕士，出生于天津市蓟县的一个安静祥和的乡村 ，目前居住于颐和园路＊号。
 
 
 
