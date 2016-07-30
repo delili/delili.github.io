@@ -40,7 +40,7 @@ epoll 的接口如下,主要是 epoll_create，epoll_ctl 和 epoll_wait 三个�
 	 }
 
 
-每个epoll对象都有一个独立的eventpoll结构体，该结构体会在哪和空间中创建独立的内存，用来存储epoll_ctl方法向epoll对象中添加进来的事件。事件都会挂到红黑树rbr下，利用红黑树可以实现事件的快速添加和删除。
+每个epoll对象都有一个独立的eventpoll结构体，该结构体会在内核空间中创建独立的内存，用来存储epoll_ctl方法向epoll对象中添加进来的事件。事件都会挂到红黑树rbr下，利用红黑树可以实现事件的快速添加和删除。
 
 
 >
@@ -55,8 +55,7 @@ epoll 的接口如下,主要是 epoll_create，epoll_ctl 和 epoll_wait 三个�
 	}
 
 
-所有添加到epoll中的事件都于设备驱动程序建立回调关系，相应的事件发生时会调用这里的回调方法（ep_epoll_callback）,它会把这样的事件放到上面的rllist双向链表中；
-
+每个事件都会建立一个epitem结构体；并与设备驱动程序建立回调关系，相应的事件发生时会调用这里的回调方法（ep_epoll_callback）,它会把这样的事件放到上面的rllist双向链表中；
 
 当调用epoll_wait检查是否有事件发生时，只需要检查eventpoll对象中的rdlist双向链表是否有epitem，如果rdlist链表不为空，则把这里的事件复制到用户内存中。
 
